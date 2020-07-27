@@ -1,0 +1,348 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="polyfill.js"></script>
+        <script id="MathJax-script" async src="tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Quantificadores existencial e universal</h4>
+
+    <h5>Resolução - Questão 1</h5>
+    <p>Denotemos primeiramente:</p>
+    <ul>
+        <li>Gostar \( Gosta(a,b) \);</li>
+        <li>Não gostar, siginifica \( \neg Gosta(a,b)\).</li>
+    </ul>
+
+    <p>Consequentemente, alguém gostar em vão pode ser definido como:</p> 
+    <p>\(\exists(a) (Gosta(a,b) \wedge \neg Gosta(b,a)) \)</p>
+
+    <ol type="a">
+        <!-- item a -->
+        <li>
+            <p>
+                Para expressar que "Existe alguém que gosta em vão", 
+                basta garantir que exista um individuo \(i\) que gosta de um individuo \( j \)
+                e que \( j \) não gosta de \( i \), onde \( i \) e \( j \) \( \in \) domínio \( D \) \( (D = \{i, j\} ) \).
+
+                Assim:
+            </p>
+                <ul>
+                    <li> \( \exists(i) Gosta(i, j) \land ¬Gosta(j, i) \) </li>
+                </ul>
+        </li>
+        <!-- item b -->
+        <li>
+            <p>
+                Para expressar "ninguém" como um quantificador, usamos \( \neg \exists (x) \). 
+                Para expressar gosta em vão (item anterior): \( Gosta(x, y) \land \neg Gosta(y, x) \).
+            </p>
+            <p>
+                Então: "Ninguém gosta em vão" é dado por:
+            </p>
+            <ul>
+                <li>\( \neg \exists (x) Gosta(x, y) \land \neg Gosta(y, x) \)</li>
+                <li>\( \forall (x) \neg (Gosta(x, y) \land \neg Gosta(y, x)) \)</li>
+                <li>\( \forall (x) \neg Gosta(x, y) \lor \neg ( \neg Gosta(y, x)) \)</li>
+                <li>\( \forall (x) \neg Gosta(x, y) \lor Gosta(y, x) \)</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h5>Resolução - Questão 2</h5>
+    <ol type="a">
+        <li>Neste caso, Sam gosta em vão, uma vez que apenas temos uma relação definindo que Sam gosta de Mary, mas como não temos a  relação \( Gosta(Mary, Sam) \), podemos concluir <i>verdadeira</i></li>
+
+        <li>
+            <p>
+                Podemos dividir essa questão em duas etapas. A primeira analisa os casos \( Gosta(Bob, Mary) \) e \( Gosta(Mary, Bob) \). Se temos uma correspondência entre Mary e Bob, ambos se gostando, eles não se gostam em vão.
+            </p>
+            <p>
+                A segunda parte vem de Sam não fazer parte de uma relação, porém faz parte do conjunto de domínio. Para que a sentença seja verdadeira, precisamos ter relações que indiquem "todos não gostam em vão". Para que Sam não goste em vão, ele precisa gostar de alguém e esse alguém tem de gostar dele, como não há relações que expressem essas condições, a sentença é <i>falsa</i>.
+            </p>
+        </li>
+    </ol>
+
+    <h5>Resolução - Questão 3</h5>
+    <ol type="a">
+        <li>
+            <p>
+            Para provar esta sentença, basta ter um contra-exemplo para um valor de \( \ x  | x \times y != 5 \).
+            Quando \( x = 0 \), o produto sempre será 0 \( \forall \ y \in R \). Portanto, <i>falsa</i>
+            </p>
+        </li>
+            
+        <li>
+            <p>
+            Uma maneira de se provar verdadeira essa sentença é assumir um \( x | x = \frac{5}{y} \). Então tem-se diversos
+            exemplos, para que seja verdadeira, exceto quando \( y = 0 \). Portanto, <i>verdadeira</i>
+            </p>
+        </li>
+
+        <li>
+            <p>
+            Essa sentença é <i>verdadeira</i> para um \( y = 0 \), pois o produto de um número real por \( 0 \), sempre será \( 0 \). 
+            Assim, \( \forall x | x \in R, x \times 0 = 0 \).
+            </p>
+        </li> 
+        
+        <li>
+            <p>
+                Veja que para um \( y = 0 \), \( xy = 0 \). Porém, só é verdadeira para um único valor. Um caso onde \( y \neq 0 \),
+                para o quantificador \( \forall x\) não será verdadeira. Então, essa afirmação é <il>falsa</i>.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                Note que a sentença é da forma \( p \rightarrow q \), então podemos reescrevê-la como \( \neg p \lor q \). Por tanto, nega-se a premissa (primeira proposição):
+                <ul>
+                    <li>\( [ \exists y \forall x p(x,y) ] \)</li>
+                    <li>\( \neg [ \exists y \forall x p(x,y) ] \)</li>
+                    <li>\( [ \forall y \neg \forall x p(x,y) ] \)</li>
+                    <li>\( [ \forall y \exists x  \neg p(x,y) ] \)</li>
+                </ul>
+
+                Veja que <strong>\( [ \forall y \exists x  \neg p(x,y) ] \)</strong> é a negação da conclusão <strong>\( [ \forall y \exists x p(x,y) ] \)</strong>, é fácil ver que temos uma tautologia, então a sentença é <i>verdadeira</i>.
+
+            </p>
+        </li>
+
+        <li>
+            Inicialmente, percebe-se que \( a \) é uma variável livre. Trabalharemos com \( x \) e \( y \).
+            Para \( x = \frac{5}{y} \), o garantimos o produto \( xy = 5\), sempre que \( y \neq 0 \), o que não fere o quantificador existencial. Para o caso de \( x = 0 \), a sentença é verdadeira. Como temos uma disjunção, essa sentença é <i>verdadeira</i> como pode-se concluir das considerações anteriores.
+        </li>
+    </ol>
+    
+
+    <h5>Resolução - Questão 4</h5>
+    <p>Vamos considerar \( n \in N \) (conjunto dos números Naturais para facilitar a explicação) e listar cada parte da sentença:</p>
+    <ul>
+        <li>\( \exists n > n_0 \)</li>
+        <p>Aqui temos que existe um \( n \in N \) maior que \( n_0 \). Isso é trivial para \( m > 0 \), pois se 
+            <p>\( n_0 \in N \)</p>
+            <p>\( n_0 + m \in N \)</p>
+            <p>\( n_0 + m > n_0 \)</p>
+            logo existe um \( n > n_0 | n = n_0 + m\).</p>
+        <li>\( \forall n_0 \)</li>
+            Como a noção de "seguinte de \( n_0 \)" no conjunto dos números Naturais é \(n_0 + 1 \). Então, para todo valor (Natural ou não), existirá sempre um valor maior que um determinado número. Assim, há números infinitos de valores que satisfazem a sentença para \( n_0 + m\).
+    </ul>
+
+    <h5>Resolução - Questão 5</h5>
+    <p>
+        Um exemplo lúdico para essa questão é uma partida de xadrez onde o rei do jogador \( B \) está ameaçado (em xeque) por duas peças do jogador \( A \). A estratégia dessa jogada é que como <strong>obrigatoriamente</strong> o jogador \( B \) deve mover o rei, a segunda jogada do jogador \( A \) sempre vai ser vitoriosa.
+    </p>
+    <ol>
+        <li>
+            \( \exists m_1^A \forall m_1^b \land \exists m_2^A \forall m_2^b \)
+        </li>
+        <li>
+            Se baseando no texto inicial da questão, todas as jogadas do jogador \( B \) são de movimentar o rei. O jogador \( A \) possui mais de uma opção de jogada a se fazer (seguir cercando o oponente ou finalizar o jogo). Na segunda rodada, \( B \), indiscutivelmente, moveu o rei e novamente, todas as opções de \( B \) são resumidas em mover a mesma peça. O jogador \( A \) por sua vez, pode então finalizar a partida.
+        </li>
+
+        <li>
+            <ul>
+                <li>\( \neg \exists m_1^A \forall m_1^B \land \exists m_2^A \forall m_2^B \)</li>
+                <li>\( \forall \neg m_1^A \forall m_1^B \land \exists m_2^A \forall m_2^B \)</li>
+                <li>\( \forall m_1^A \neg \forall m_1^B \land \exists m_2^A \forall m_2^B \)</li>
+                <li>\( \forall m_1^A \exists \neg  m_1^B \land \exists m_2^A \forall m_2^B \)</li>
+                <li>\( \forall m_1^A \exists \neg m_1^B \lor \neg \exists m_2^A \forall m_2^B \)</li>
+                <li>\( \forall m_1^A \exists \neg m_1^B \lor \forall \neg m_2^A \forall m_2^B \)</li>
+                <li>\( \forall m_1^A \exists \neg m_1^B \lor \forall m_2^A \exists \neg m_2^B \)</li>
+            </ul>
+        </li>
+
+        <li>
+            A cada "passo" que a negação sai da esquerda do quantificador até chegar numa proposição, troca-se \( \neg \forall \) por um \( \exists \neg \).
+            <p>
+                Veja que na última senteça do item anterior temos: \( \forall m_1^A \exists \neg m_1^B \lor \forall m_2^A \exists \neg m_2^B \), isso siginifica que \( A \) tem todas as jogadas possíveis para ganhar quando o jogador \( B \) não tiver uma sequer. Exemplificando, se \( B \) não tem como jogar, \( A \) é declarado o vencedor.
+            </p>
+        </li>
+
+    </ol>
+
+    <h4>Complexidade de tempo</h4>
+
+    <h5>Resolução - Questão 6</h5>
+    <ul>
+        <li>Primeiramente, 24 horas possui \( 60 \times 60 \times 24 = 86400 \) segundos;</li>
+        <li>A máquina executa \( 10^6 \) operações por segundo;</li>
+        <li>Em um dia, a máquina executa \( 864 \times 10^8 \) operações.</li>
+    </ul>
+    
+    <ol type="a">
+        <li>Para \( P_1 \), basta resolver a equação \( n^4 = 864 \times 10^8\)
+        <ul>
+            <li>\( n^4 = 864 \times 10^8 \)</li>
+            <li>\( n^4 = x^2 \)</li>
+            <li>\( x^2 = 2 ^ 5 \times 3 ^ 3 \times 10^8 \)</li>
+            <li>\( x = (4 \sqrt{2}) \times (3 \sqrt{3}) \times 10000 \)</li>
+            <li>\( x = 12  \times 10000 \sqrt{6} \)</li>
+            <li>\( n = \sqrt{12  \times 10000 \sqrt{6}} \)</li>
+            <li>\( n = 2 \times 10 \sqrt{3  \times 100 \sqrt{6}} \)</li>
+            <li>\( n = 20 \sqrt{ 3 \times 10 \sqrt{6}} \)</li>
+        </ul>
+        </li>
+        
+        <li>Para \( P_2 \), basta resolver a equação \( 2^n = 864 \times 10^8\)
+        <ul>
+            <li>\( 2^n = 864 \times 10^8 \)</li>
+            <li>\( n = \frac{\log(864 \times 10^8)}{\log 2} \)</li>
+        </ul>
+        <!-- 20.57 / log 2 -- 29.68 -->
+        </li>
+    </ol>
+
+    <h5>Resolução - Questão 7</h5>
+    <ol type="a">
+        <li>
+            <p>Para ambos os algoritmos, vamos calcular o tempo de operação da mais "interna" à mais "externa". Isso facilitará bastante a percepção de como se comportam as funções.</p>
+            <ul>
+                <li>
+                    <p>
+                        Para o algoritmo <i>PreEscolar</i>, a variável \( c \) é somada \( a \) vezes a um valor \( b \). Veja que a quantidade de operações é dada em função de \( a \), uma vez que \( b \) é uma constante e que independente de valor, a quantidade de operações será a mesma para \( a \).
+                    </p>
+                    <p>
+                        Assim, a função de tempo que corresponde a <i>PreEscolar</i> é dada por \(  10a + 0b \).
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Para o algoritmo <i>Primario</i>, vamos atentar primeiramente para a linha <i>para j = 0 até t-1</i>. Analogamente ao item anterior, temos \( t - 1 + 1 = t\) operações (lembre que a operação quando \(j = 0 \) é considerada, por isso, temos \( t \)). Esse laço interno possui \( 10 \times t \) operações e isso é nítido.
+                    </p>
+                    <p>
+                        O próximo passo é atentar para o laço externo (<i>para i = 0 até s-1</i>). Veja que tem complexidade idêntica à linha descrita anteriormente, ou seja, temos \( s \) operações.                        
+                    </p>
+                    <p>
+                        Como os laços de repetição são aninhados, tem-se \( s \times (10 \times t) \) operações.
+                    </p>
+                    <p>
+                        O passo fundamental para descobrir \( s \) e \( t \) em função de \( a \) e \( b \) é descobrir a realação de um número e a quantidade de dígitos que ele possui.
+                        Um método para descobrir isso é calcular o teto de \(\log{_{10} }{a} \) e \(\log{_{10} }{b} \) respectivamente. Entenda teto como os próximos inteiros maiores que \(\log{_{10} }{a} \) e \(\log{_{10} }{b} \) respectivamente.
+                    </p>
+                    <p>
+                        Então, basicamente, reescrevemos a função dados \( a \) e \( b \):
+                        <p>
+                            <i>Primario</i> =  \( \log{_{10} }{a} \times (10 \times \log{_{10} }{b}) \)
+                        </p>
+                    </p>
+                </li>
+            </ul>            
+        </li>
+        
+        <li>
+            <ul>
+                <li>
+                    <i>PreEscolar</i> = \(  10a + 0b \)
+                    <p>
+                        \(  10 \times 9.168.391 + 0 \times 502 = 91.683.910 \) segundos.
+                    </p>
+                </li>
+                <li> 
+                    <i>Primario</i> = \( \log{_{10} }{a} \times (10 \times \log{_{10} }{b}) \)
+                    <p>
+                        \( \log{_{10} }{9.168.391} \times (10 \times \log{_{10} }{502}) = \\ \)
+                        \( 6,9 \times (10 \times 2,7 ) = 186,3 \) segundos (com uma aproximação maior).
+                    </p>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            Analogamente ao item anterior, basta calcular o \( log \) de \( a \) e \( b \), porém , na base \( 2 \).
+            <p>
+                \( n_{a} = \log{_2}{ 9.168.391} \approx 23.1 \), nesse caso, 24 bits.
+            </p>
+            <p>
+                \( n_{b} = \log{_2}{ 502} \approx 8.9 \), nesse caso, 9 bits.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                Para o algoritmo <i>PreEscolar</i> = \(  10a + 0b \), a função é dada em termos de \( a \), então é fácil ver que a pior instância é quando \( a = n \)
+            </p>
+            <p>
+                Já no algoritmo <i>Primario</i> = \( \log{_{10} }{a} \times (10 \times \log{_{10} }{b}) \) ou \( 10 \times s \times t\), precisamos encontrar valores para \( s \) e \( t \), tais que \( s \time t \) seja o maior possível e em função de \( n \) e que \( s + t = n \).
+            </p>
+            <ul>
+                <li>\( s + t = n\)</li>
+                <li>\( s = n - t\)</li>
+                <li>\( s \times t = v \) onde \( v \) é o valor máximo</li>
+                <li>Segue a equação:</li>
+                <li>\( (n - t) \times t \)</li>
+                <li>\( -t^2 + nt = 0\)</li>
+                <li>O valor de máximo de \( y \) é dado por: \( \frac{(b^2 - 4ac)}{4a} \)</li>
+                <li>\( \frac{(n^2 - 4 \times 1 \times 0)}{4 \times 1} \)</li>
+                <li>\( \frac{(n^2)}{4} \)</li>
+                <li>Os zeros da função \( -t^2 + nt = 0\), são \(0 e n \)</li>
+                <li>Então, entre \(0 e n \) no eixo \( x \), temos \( \frac{(n^2)}{4} \)</li>
+                <li>Assim, podemos admitir que o tamanho que maximiza a execução é \( \frac{n - 0}{2} \) tanto para \( s \) quanto para \( t \).</li>
+            </ul>
+        </li>
+
+        <li>
+            <ul>
+                <li>Para o algoritmo <i>PreEscolar</i> = \(  10n \), a quantidade de bits é igual a \( 2^n - 1 \). Daí temos:
+                \( 10 \times 2^n - 1 \), ou apenas \( T(2^n) \) (<i>tempo de execução exponencial</i>)
+                </li>
+
+                <li>Já no algoritmo <i>Primario</i> = \( 10 \frac{(n^2)}{4} \) ou apenas \( T(\frac{(n^2)}{4}) \) ou ainda
+                    \( T(n^2) \) (<i>tempo de execução polinomial</i>).
+                </li>
+            </ul>
+        </li>
+
+    </ol>
+
+    <h4>Logaritmos e exponenciais</h4>
+
+    <h5>Resolução - Questão 8</h5>
+    <ol type="a">
+        <li>
+            \( a^3 \times a^5 = a^{3+5} = a^8 \)
+        </li>
+
+        <li>
+            \( 3^a \times 5^a = (3 \times 5) ^ a = 15^a \)
+        </li>
+
+        <li>
+            \( 3^a + 5^a \)
+        </li>
+
+        <li>
+            \( 2^{6  \log{4}{n} +7 } \)
+            <ul>
+                <li>\( 2^{ \frac{6  \log{n}}{ \log 4} +7 } \)</li>
+                <li>\( 2^{ 3 \frac{\log{n}}{ \log 2} +7 } \)</li>
+                <li>\( 2^{ 3 \log{n}} \times 2^{ \frac{1}{\log{2}} } \times 2^7 \)</li>
+                <li>\( n^3 \times 2 \times 2^7 \)</li>
+                <li>\( 256n^3 \)</li>
+            </ul>
+        </li>
+
+        <li>
+            <ul>
+                <li>\( n^{\frac{3}{\log{_2}{n}}} = \)</li>
+                <li>\( n^{3 \times \frac{1}{\log{_2}{n}}} = \)</li>
+                <li>\( n^{3 \times \log{_n}{2}} = \)</li>
+                <li>\( 2^{3} = 8 \)</li>
+            </ul>
+        </li>
+    </ol>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    </body>
+</html>
+
