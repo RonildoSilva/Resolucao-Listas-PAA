@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Crescimento assintótico</h4>
+
+    <h5>Resolução - Questão 1</h5>
+
+    <ol type="a">
+        <!-- item a -->
+        <li>
+            <p>\( f(n) = n^2 + 3n^2 \log n \) = \( f(n) = 4n^2 \log n \).</p>
+            <p>Sabendo que \( 4n^2 \) cresce mais rápido que \( \log n \), \( f(n) \in n^{\Theta(2)} \)</p>
+        </li>
+        <!-- item b -->
+        <li>
+            <p>\( f(n) = 5n^3-17n+4 \)</p>
+            <p>Veja que a função \( f(n) \) é um polinômio de grau \( 3 \). Assim, \( f(n) \in n^{\Theta(3)} \)</p>
+        </li>
+
+        <li>
+            <p>\( f(n) = 7^{3 \log_2 n} \)</p> É da forma exponencial, temos uma base Real e um expoente como uma função logarítimica. Então \( f(n) \in 2^{\Theta(log n)} \)
+        </li>
+
+        <li>
+            <p>\( f(n) = \{1 \text{ se } n \text{ é ímpar, } 2 \text{ se } n \text{ é par}\} \)</p>
+            <p>Nesse algoritmo, temos a execução de uma "atribuição" independente do tamanho de n. Então, a aproximação em \( \Theta\) é constante \( \Theta(1) \).</p>
+        </li>
+
+        <li>
+            <p>\( f(n) = 2 \cdot 2^n \cdot n^2 \log_2 n - 7n^8 + 7 \cdot 3^n/n^2 \)</p>
+            <p>\(  f(n) =  2^{(n+1)} \cdot n^2 \log_2 n - 7n^8 + 7 \cdot 3^n/n^2 \)</p>
+            <p>Vamos atentar para as funções mais "complexas" de \( f(n) \)</p>
+            
+            <ul>
+                \( 7 \cdot 3^n/n^2 \)
+                <p>
+                    Temos uma função exponencial sendo dividida por uma função polinomial. Atente para \( n^2 \), como ele é um denominador, não pode ser \( 0 \), ora... Porque iríamos prestar atenção num tamanho de entrada nulo? Nesse caso, quando temos valores pouco maiores que \( 0 \), teríamos uma função decrescente após a assíntota e que  só irá "crescer", quando \( n > x_{minimo}\).
+                </p>
+            </ul>
+
+            <ul>
+                \(  2^{(n+1)} \cdot n^2 \log_2 n \)
+                <p>
+                    Mesmo esse trecho sendo uma função exponencial de base menor, temos uma outra função polilogarítmica multiplicando-a. Note que esse trecho é crescente e contínua, então ela sempre vai crescer mais rápido por mais que se pareça com o trecho anterior.
+                </p>
+            </ul>
+            <p>Então \( f(n) \in 2^{\Theta(n)}\)</p>
+        </li>
+
+        <li>
+            <p>\( f(n) = 100 n^{100} + 3^{4n} + \log^{1000}(n) + 4^{3n} \)</p>
+            <p>Foquemos nos trecho que correspondem as funções exponenciais:</p>
+            <ul>
+                <p>\( 3^{4n} \)</p>
+            </ul>
+            <ul>
+                <p>\( 4^{3n} \)</p>
+            </ul>
+            <p>São opções bem parecidas, porém deve-se atentar para o expoente e nesse caso, \( 4n > 3n \).</p>
+            <p>Independente da função escolhida, \( f(n) \in 3^{\Theta(4n)}\).</p>
+        </li>
+
+        <li>
+            <p>\( f(n) = 6n^4/\log^3 n + 8n^{100}2^{-5n} + 17 \)</p>
+            <p>Em itens anteriores, vimos que um denominador como função, tende a "baixar" o crescimento da função e é um dos motivos de que \( 6n^4/\log^3 n \) não cresce bastante em relação à \( 8n^{100}2^{-5n} \). Outros motivos, são: o expoente de \( 8n^{100}2^{-5n} \) e o fator \( 2^{-5n} \) que mesmo sendo decrescente, não vai ser \( \leq 0\).</p>
+            <p>\( f(n) \in n^{\Theta(100)}\)</p>
+        </li>
+
+        <li>
+            <p>\( f(n)=1/n^2 + 5\log (n) / n \)</p>
+            <p>Note novamente os denominadores \( n^2 \) e \( n \), possuem o "mesmo" comportamento devido as indeterminações a assíntotas quando próximas de 0. O diferencial que definirá a que conjunto em \( \Theta \) pertencerá. Como o numerador \( 5\log (n) \) cresce mais que \( 1 \), então \( f(n) \notin C \), onde \( C \) é o conjunto de opções de pertinência das funções.</p>
+        </li>
+
+        <li>
+            <p>\( f(n)=7 \sqrt[5]{n} + 6\sqrt[3]{n} \)</p>
+            <p>Como ambas possuem denominador \( n \), basta transformá-las em \( 7 \frac{1}{n^5} \) e \( 6 \frac{1}{n^3} \), temos de considerar o trecho que cresce mais rápido, porém, ambas são decrescentes, então, basta verifica o trecho que decresce mais lentamente, ou seja, a que possui a menor função como denominador.</p>
+            <p>Concluindo, \( f(n) \in 1/n^{\Theta(3)} \)</p>
+
+    <h4>Notação assintótica</h4>
+
+    <h5>Resolução - Questão 2</h5>
+
+    <ol type="a">
+        <!-- item a -->
+        <li>
+            <p></p>
+        </li>
+        <!-- item b -->
+        <li>
+            <p></p>
+        </li>
+
+        <li>
+            <p></p>
+        </li>
+    </ol>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    </body>
+</html>
+

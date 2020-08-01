@@ -5,9 +5,9 @@
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <meta http-equiv="refresh" content="15">
         -->
-        <link rel="stylesheet" href="bootstrap.min.css">
-        <script src="polyfill.js"></script>
-        <script id="MathJax-script" async src="tex-mml-chtml.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
         
     </head>
     <body>
@@ -76,7 +76,7 @@
     <ol type="a">
         <li>
             <p>
-            Para provar esta sentença, basta ter um contra-exemplo para um valor de \( \ x  | x \times y != 5 \).
+            Para provar esta sentença, basta ter um contra-exemplo para um valor de \( \ x  | x \times y \neq 5 \).
             Quando \( x = 0 \), o produto sempre será 0 \( \forall \ y \in R \). Portanto, <i>falsa</i>
             </p>
         </li>
@@ -180,25 +180,29 @@
     </ul>
     
     <ol type="a">
-        <li>Para \( P_1 \), basta resolver a equação \( n^4 = 864 \times 10^8\)
-        <ul>
-            <li>\( n^4 = 864 \times 10^8 \)</li>
-            <li>\( n^4 = x^2 \)</li>
-            <li>\( x^2 = 2 ^ 5 \times 3 ^ 3 \times 10^8 \)</li>
-            <li>\( x = (4 \sqrt{2}) \times (3 \sqrt{3}) \times 10000 \)</li>
-            <li>\( x = 12  \times 10000 \sqrt{6} \)</li>
-            <li>\( n = \sqrt{12  \times 10000 \sqrt{6}} \)</li>
-            <li>\( n = 2 \times 10 \sqrt{3  \times 100 \sqrt{6}} \)</li>
-            <li>\( n = 20 \sqrt{ 3 \times 10 \sqrt{6}} \)</li>
-        </ul>
+        <li>
+            <p>Para \( P_1 \), basta resolver a equação \( n^4 = 864 \times 10^8\)</p>
+            <ul>
+                <li>\( n^4 = 864 \times 10^8 \)</li>
+                <li>\( n^4 = x^2 \)</li>
+                <li>\( x^2 = 2 ^ 5 \times 3 ^ 3 \times 10^8 \)</li>
+                <li>\( x = (4 \sqrt{2}) \times (3 \sqrt{3}) \times 10000 \)</li>
+                <li>\( x = 12  \times 10000 \sqrt{6} \)</li>
+                <li>\( n = \sqrt{12  \times 10000 \sqrt{6}} \)</li>
+                <li>\( n = 2 \times 10 \sqrt{3  \times 100 \sqrt{6}} \)</li>
+                <li>\( n = 20 \sqrt{ 3 \times 10 \sqrt{6}} \)</li>
+            </ul>
+            
+            <p>Para \( P_2 \), basta resolver a equação \( 2^n = 864 \times 10^8\)</p>
+            <ul>
+                <li>\( 2^n = 864 \times 10^8 \)</li>
+                <li>\( n = \frac{\log(864 \times 10^8)}{\log 2} \)</li>
+            </ul>
         </li>
-        
-        <li>Para \( P_2 \), basta resolver a equação \( 2^n = 864 \times 10^8\)
-        <ul>
-            <li>\( 2^n = 864 \times 10^8 \)</li>
-            <li>\( n = \frac{\log(864 \times 10^8)}{\log 2} \)</li>
-        </ul>
         <!-- 20.57 / log 2 -- 29.68 -->
+
+        <li>
+            Um valor positivo que satisfaz \( 2^n = n^4 \) é \( 16 \).
         </li>
     </ol>
 
@@ -327,8 +331,7 @@
                 <li>\( 2^{ \frac{6  \log{n}}{ \log 4} +7 } \)</li>
                 <li>\( 2^{ 3 \frac{\log{n}}{ \log 2} +7 } \)</li>
                 <li>\( 2^{ 3 \log{n}} \times 2^{ \frac{1}{\log{2}} } \times 2^7 \)</li>
-                <li>\( n^3 \times 2 \times 2^7 \)</li>
-                <li>\( 256n^3 \)</li>
+                <li>\( 128n^3 \)</li>
             </ul>
         </li>
 
