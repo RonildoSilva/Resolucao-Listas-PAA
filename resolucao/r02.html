@@ -92,19 +92,38 @@
     <h4>Notação assintótica</h4>
 
     <h5>Resolução - Questão 2</h5>
+    <!--
+    <p>\( \Theta(g(n)) = \{f(n) \text{existem constantes positivas} c_1 , c_2 \text{e} n_0 \text{tais que } 0 \leq c_1g(n) \leq f(n) \leq c_2g(n) \text{para todo} n \geq n_0 \)</p>
+    -->
+    <p>
+        \( \Theta(g(n)) =  \{f(n) \text{ existem constantes positivas } c_1 , c_2 \text{ e }  n_0 \text{ tais que } 0 \leq c_1g(n) \leq f(n) \leq c_2g(n) \text{ para todo } n \geq n_0 \} \)
+    </p>
 
     <ol type="a">
         <!-- item a -->
         <li>
-            <p></p>
+            <p>Utilizando a definição acima, podemos selecionar dois valores reais \( 0 \leq a_1 < \leq \text{ e }  a_2 \geq a \)</p>
+            <p>É um passo simples, pois não fere as condições da definição.</p>
         </li>
         <!-- item b -->
+        
         <li>
-            <p></p>
+            <p>
+                Vamos considerar as notações em \( \Theta \) como conjuntos, na verdade, são conjuntos, mas é interessante que seja preservada essa ideia ao invés da que remete a função.
+            </p>
+            <p>\( f(n) \) é subconjunto de \( \Theta(g(n)) \).</p>
+            <p>\( g(n) \) é subconjunto de \( \Theta(h(n)) \).</p>
+            <p>Então, \( \Theta(h(n)) \) é superconjunto de \( f(n) \) e \( g(n) \) simultaneamente. Significa também que \( \Theta(h(n)) \) é um limitante das duas funções apresentadas, portanto, \( \f(n) \in \Theta(h(n)) \)</p>
         </li>
 
         <li>
-            <p></p>
+            <p>
+                Vamos considerar as notações em \( \Theta \) como conjuntos, na verdade, são conjuntos, mas é interessante que seja preservada essa ideia ao invés da que remete a função.
+            </p>
+            <p>\( f_1(n) \) é subconjunto de \( \Theta(g_1(n)) \).</p>
+            <p>\( f_2(n) \) é subconjunto de \( \Theta(g_2(n)) \).</p>
+
+            <p>Então, \( f_1(n) + f_2n) \) significa a "união" entre esses conjuntos e automaticamente, vai pertencer também à "união" de seus respectivos superconjuntos \( \Theta(g_2(n)) + \Theta(g_2(n)) \).</p>
         </li>
     </ol>
 
