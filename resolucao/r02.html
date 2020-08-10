@@ -108,22 +108,60 @@
         <!-- item b -->
         
         <li>
-            <p>
-                Vamos considerar as notações em \( \Theta \) como conjuntos, na verdade, são conjuntos, mas é interessante que seja preservada essa ideia ao invés da que remete a função.
-            </p>
-            <p>\( f(n) \) é subconjunto de \( \Theta(g(n)) \).</p>
-            <p>\( g(n) \) é subconjunto de \( \Theta(h(n)) \).</p>
-            <p>Então, \( \Theta(h(n)) \) é superconjunto de \( f(n) \) e \( g(n) \) simultaneamente. Significa também que \( \Theta(h(n)) \) é um limitante das duas funções apresentadas, portanto, \( \f(n) \in \Theta(h(n)) \)</p>
+            <strong>Forma de prova I:</strong>
+            <ul>
+
+                <li>\( c \cdot g(n) \leq f(n) \leq d \cdot g(n) \)</li>
+                <li>\( i \cdot h(n) \leq g(n) \leq j \cdot h(n) \)</li>
+                <li>\( i \cdot h(n) \leq g(n) \leq c \cdot g(n) \leq f(n) \leq d \cdot g(n) \leq j \cdot h(n) \)</li>
+
+                <p>Como \( c \cdot g(n) \text{ e } d \cdot g(n) \) são maiores que \( g(n) \)</p>
+                <p>e tanto \( i \cdot h(n) \text{ como } j \cdot h(n) \) é maior e menor respectivamente em relação as demais funções, (\ f(n) \in \Theta(h(n)) \)</p>
+            </ul>
+
+            <strong>Forma de prova II:</strong>
+            <ul>
+                <p>
+                    Vamos considerar as notações em \( \Theta \) como conjuntos, na verdade, são conjuntos, mas é interessante que seja preservada essa ideia ao invés da que remete a função.
+                </p>
+                <p>\( f(n) \) é subconjunto de \( \Theta(g(n)) \).</p>
+                <p>\( g(n) \) é subconjunto de \( \Theta(h(n)) \).</p>
+                <p>Então, \( \Theta(h(n)) \) é superconjunto de \( f(n) \) e \( g(n) \) simultaneamente. Significa também que \( \Theta(h(n)) \) é um limitante das duas funções apresentadas, portanto, \( f(n) \in \Theta(h(n)) \)</p>
+            </ul>
         </li>
 
         <li>
+            <strong>Forma de prova I:</strong>
+            <ul>
+
+                <li>\( c \cdot g_1(n) \leq f_1(n) \leq d \cdot g_1(n) \)</li>
+                <li>\( i \cdot g_2(n) \leq f_2(n) \leq j \cdot g_2(n) \)</li>
+                <li>
+                    \( 
+                        c \cdot g_1(n) + i \cdot g_2(n) \leq f_1(n) + f_2(n) \leq d \cdot g_1(n) + j \cdot g_2(n) 
+                    \)
+                </li>
+
+                <strong>Vamos aos casos:</strong>
+                <ul>
+                    <li>\( f_1(n) > f_2(n) \)</li> 
+                    <p>Nesse caso, \( f_1(n) \) é mais complexo que \( f_2(n) \) então, \( g_1(n) > g_2(n) \)</p>
+                    <li>\( f_1(n) < f_2(n) \)</li> 
+                    <p>Nesse caso, \( f_2(n) \) é mais complexo que \( f_1(n) \) então, \( g_2(n) > g_1(n) \)</p>
+                    <li>\( f_1(n) = f_2(n) \)</li> 
+                    <p>Nesse caso, tanto \( g_1(n) \text{ quanto } g_2(n) \) são limitantes para ambas as funções</p>
+                </ul>
+            
+            </ul>
+
+            <strong>Forma de prova II:</strong>
             <p>
                 Vamos considerar as notações em \( \Theta \) como conjuntos, na verdade, são conjuntos, mas é interessante que seja preservada essa ideia ao invés da que remete a função.
             </p>
             <p>\( f_1(n) \) é subconjunto de \( \Theta(g_1(n)) \).</p>
             <p>\( f_2(n) \) é subconjunto de \( \Theta(g_2(n)) \).</p>
 
-            <p>Então, \( f_1(n) + f_2n) \) significa a "união" entre esses conjuntos e automaticamente, vai pertencer também à "união" de seus respectivos superconjuntos \( \Theta(g_2(n)) + \Theta(g_2(n)) \).</p>
+            <p>Então, \( f_1(n) + f_2n) \) significa a "união" entre esses conjuntos e automaticamente, vai pertencer também à "união" de seus respectivos superconjuntos \( \Theta(g_1(n)) + \Theta(g_2(n)) \).</p>
         </li>
     </ol>
 

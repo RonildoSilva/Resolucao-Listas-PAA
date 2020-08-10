@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Algoritmos para checagem de conformidade de modelos de processos</h4>
+    
+    <h5>Descrição do Problema</h5>
+
+    <p>A busca pela otimização de processos é uma tarefa recente e bastante procurada atualmente, uma vez que uma quantidade de empresas privadas ou serviços públicos almejam fazer mais em menos tempo, ou executar tarefas da melhor forma possível [Kalenkova 2017].</p>
+    
+    <p>Geralmente, as entidade apenas organizavam seus fluxos de trabalhos e delegações de tarefas com diagramas que muitas vezes, obedecem apenas a intuição do projetista que nem sempre entende à fundo o processo de execução em todos os possíveis casos.</p>
+
+    <p>O estudo da Mineração de processos ajuda a entender como otimizar esses processos. Otimizar um processo pode significar detectar um <i>loop</i> em uma determinada tarefa, tarefas que não podem ser concluídas devido uma má modelagem, etc.</p>
+
+    <h5>Representação de um processo</h5>
+    <p>Um processo pode ser representado como um diagrama, uma lista de tarefas, um autômato, uma rede de petri ([Erofeev 2017]) ou grafo direcional. Esse último, será alvo deste trabalho.</p>
+
+    <h6>O Problema do Fluxo Máximo</h6>
+    <p> Uma rede é um digrafo \( D(V,E) \) em que a cada aresta \( e \in E \) está associado um número real positivo \( c(e) \) denominado capacidade da aresta \( e \). Suponha que \( D \) possua dois vértices especiais e distintos \( s,t \in V \) chamados origem e destino, respectivamente, com as seguintes propriedades: o primeiro é uma fonte que alcança todos os vértices. Enquanto o destino é um sumidouro alcançado também por todos. Um fluxo \( f \) de \( s \) a \( t \) em \( D \) é uma função que a cada aresta \( e \in E \) associa um número real não negativo \( f(e) \) satisfazendo às seguintes condições:
+    </p>
+    <ul>
+        <li>\( 0 \leq f(e) \leq c(e)\), para toda aresta \( e \in E \)</li>
+        <li>\( \sum_w_1 f(w_1 ,v) = \sum_w_2 f(v,w_2 ) \). para todo vértice \( v \neq s,t. \)</li>
+    </ul>
+    [Szwarcfiter 2018].
+
+    A capacidade da aresta pode representar o limite de espera de uma tarefa. Por exemplo: "Os dados do cadastro devem ser atualizado em 24h", para que se possa passar para a próxima etapa do processo.
+
+    <h6>Correção de modelos</h6>
+
+    Os trabalhos de  [Roditty 2016] e [Roditty 2008] referenciam uma série de pesquisas que propõe soluções para o problema de alcançabilidade em grafos, incluindo uma solução própria. Esse trabalho trata do problema de manter um gráfico direcionado que passa por uma sequência de inserções e exclusões de arestas de forma que facilite a resposta rápida de consultas de alcançabilidade.
+    
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/hY29g0D/dynamic-reachability-algorithms.png" alt="dynamic-reachability-algorithms" border="0"></a>
+
+    
+
+    <h5>Referências</h5>
+    <ol>
+        <li>Erofeev, Evgeny, and Harro Wimmel. "Reachability Graphs of Two-Transition Petri Nets." ATAED@ Petri Nets/ACSD. 2017.</li>
+
+        <li>Kalenkova,  A.,  Ageev,  A.,  Lomazova,  I.  A.,  and  van  der  Aalst,  W.  M.  (2017).    E-government services:  Comparing real and expected user behavior.   InInternationalConference on Business Process Management, pages 484–496. Springer.</li>
+        
+        <li>Roditty, Liam, and Uri Zwick. "A fully dynamic reachability algorithm for directed graphs with an almost linear update time." SIAM Journal on Computing 45.3 (2016): 712-733.</li>
+        
+        <li>Roditty, Liam, and Uri Zwick. "Improved dynamic reachability algorithms for directed graphs." SIAM Journal on Computing 37.5 (2008): 1455-1471.</li>
+        
+        <li>Skobtsov, A. and Kalenkova, A. (2019).  Efficient comparison of process models usingtabu search algorithm. CEUR Workshop Proceedings</li>
+        
+        <li>Szwarcfiter, Jayme Luiz. Teoria computacional de grafos: Os Algoritmos. Elsevier Brasil, 2018.</li>
+        
+    </ol>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    </body>
+</html>
+
