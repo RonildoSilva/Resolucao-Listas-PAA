@@ -1,0 +1,293 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Aproximação de somatórios</h4>
+
+    <h5>\( \sum_{i=0}^n f(i) \in \Theta(f(n)) = \Theta(b^{an} \cdot n^{d} \cdot log^e{n} \)</h5>
+
+    <p>Somas geométricas (O somatório é dominado pelo último termo.)</p>
+    <li>
+       <ul>Quando \( b^{a} > 1 \)</ul> 
+       <ul>Em \( b^{a} > 1 \), quando \( a \) cresce mais que uma função linear.</ul> 
+       <ul></ul> 
+    </li>
+    <p>Somas Aritiméticas</p>
+    <li>
+        <ul>Quando \( b^{a} = 1 \) e \( d > -1 \), \( \Theta(n^{d+1} \cdot log^e{n}) \)</ul>
+        <ul>\( f(i) \) constante, \( \Theta(n) \)</ul>
+        <ul>\( f(i) \) linear, \( \Theta(n^2) \)</ul>
+        <ul>\( f(i) \) polinomio, \( \Theta(n^{d+1}) \)</ul>
+        <ul></ul>
+    </li>
+
+    <hr>
+    <hr>
+
+    <h5>Resolução - Questão 1</h5>    
+
+    <ol type="a">
+        <!-- item a -->
+        <li>
+            <p>\( \sum_{i=0}^n (7i^3 - 300i^2 + 16) \)</p>
+            <p>Como \( f(i) \) é um polinômio, a aproximação se dá por uma soma aritimética. \( f(i) \in \Theta(n^{3+1}) = \Theta(n^{4}) \) </p>
+        </li>
+
+        <!-- item b -->
+        <li>
+            <p>\( \sum_{i=0}^n (i^8+2^{3i}/i^2) \)</p>
+            <p>Aproximação geométrica</p>
+            <p>\( \sum_{i=0}^n (i^8+2^{3i} \cdot 1^{-i^2}) \)</p>
+            <p>\( \in \Theta (2^{3n}) \)</p>
+        </li>
+
+        <!-- item c -->
+        <li>
+            <p>\( \sum_{i=0}^n 1/i^{1{,}1} \)</p>
+            <p>Soma geométrica</p>
+            <p>\( \sum_{i=0}^n i^{-1{,}1} \)</p>
+            <p>\( \sum_{i=0}^n i^{-0{,}1} \)</p>
+            <p>Limitada</p>
+            <p>\( \in \Theta (n^{-0{,}1}) \)</p>
+            <p>\( \in \Theta (1) \)</p>
+        </li>
+        
+        <!-- item d -->
+        <li>
+            <p>\( \sum_{i=0}^n 1/i^{0{,}9} \)</p>
+            <p>Soma acima da harmônica:</p>
+            <p>\( \sum_{i=0}^n 1/i^{0{,}9} \)</p>
+            <p>\( \sum_{i=0}^n i^{-0{,}9} \)</p>
+            <p>\( \in \Theta(n^{0{,}1}) \)</p>
+        </li>
+        
+        <!-- item e -->
+        <li>
+            <p>\( \sum_{i=0}^n (7i^{3{,}72}/\log^2 i - 300i^2 \log^9 i) \)</p>
+            <ul>
+                <li>\( \sum_{i=0}^n (7i^{3{,}72} \cdot \frac{1}{\log^2 i} - 300i^2 \log^9 i) \)</li>
+                <li>\( \sum_{i=0}^n (7i^{3{,}72} \cdot \frac{1}{\log^2 i}) - \sum_{i=0}^n (300i^2 \log^9 i) \)</li>
+                <li>O primeiro somatório é igual a \( 0 \), pois \( (\frac{1}{\log^2 i}) \) tende a 0.</li>
+                <li>\( \sum_{i=0}^n (300i^2 \log^9 i) \)</li>
+                <li>\( e = 9 \)</li>
+                <li>\( b^{a} > 1 \)</li>
+                <li>Domínio pelo ultimo termo</li>
+                <li>\( \Theta (n^2 log n) \)</li>
+            </ul>
+        </li>
+        
+        <!-- item f -->
+        <li>
+            <p>\( \sum_{i=0}^n (\log^2 (i) + 1/i) \)</p>
+            <ul>
+                <li>\( \sum_{i=0}^n (\log^2 (i) + 1/i) \)</li>
+                <li>\( \sum_{i=0}^n (\log^2 (i)) + \sum_{i=0}^n (1/i) \)</li>
+                <li>\( \sum_{i=0}^n (\log^2 (i)) + \Theta (1/n) \)</li>
+                <li>\( \Theta(\log^2 (n)) + \Theta (1/n) \)</li>
+                <li>\( \Theta(\log^2 (n)) + 0 \)</li>
+                <li>\( \Theta(\log^2 (n)) \)</li>
+            </ul>
+        </li>
+        
+        <!-- item g -->
+        <li>
+            <p>\( \sum_{i=1}^{\log n} n \cdot i^2 \)</p>
+            <p>Aproximação geométrica:</p>
+            <p>\( n \cdot \log n^2 \)</p>
+            <p>\( \in \Theta (n \cdot \log n^2) \)</p>
+        </li>
+
+        <!-- item h -->
+        <li>
+            <p>\( \sum_{i=0}^n \sum_{j=0}^m j/i \)</p>
+            <p>\( f(i) \in \Theta( m \cdot n) \)</p>
+        </li>
+            
+        <!-- item i -->
+        <li>
+            <p>\( \sum_{i=1}^n \sum_{j=1}^{i^2} ij\log i \)</p>
+            <ul>
+                <li>\( \sum_{i=1}^n \sum_{j=1}^{i^2} ij + (\sum_{i=1}^n \log i) \)</li>
+                <li>Aproximação do terceiro somatório</li>
+                <li>\( \sum_{i=1}^n \sum_{j=1}^{i^2} ij + ( \Theta \log n ) \)</li>
+                <li>Aproximação do primeiro somatório</li>
+                <li>\( n  \cdot \sum_{j=1}^{n^2} nj + ( \Theta \log n ) \)</li>
+                <li>Aproximação do último somatório</li>
+                <li>\( n  \cdot n^2 + ( \Theta \log n ) \)</li>
+                <li>\( \in \Theta (n^3) \)</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h4>Aproximação de recorrências</h4>
+
+    <h5>Resolução - Questão 2</h5>
+    <ol type="a">
+        <li>\( T(n) = 2T(n/2) + n \)</li>
+        <ul>
+            <li>\( d = 1 \)</li>
+            <li>\( \log _{b} a = \log _{2} 2\)</li>
+            <li>\( \log _{2} 2 = d \)</li>
+            <li>\( T(n) \in \Theta (n) \)</li>
+        </ul>
+
+        <li>\( T(n) = 2T(n/2) + 1 \)</li>
+        <ul>
+            <li>\( d = 1 \)</li>
+            <li>\( \log _{b} a = \log _{2} 2\)</li>
+            <li>\( \log _{2} 2 = d \)</li>
+            <li>\( T(n) \in \Theta (n) \)</li>
+        </ul>
+
+
+        <li>\( T(n) = 4T(n/2) + \Theta(n^3 / \log^3 n) \)</li>
+        <ul>
+            <li>\( d = 3 \)</li>
+            <li>\( e = -3 \)</li>
+            <li>\( \log _{b} a = \log _{2} 4 = 2 \)</li>
+            <li>\( \log _{2} 4 = 2 \)</li>
+            <li>\( 2 < 3 \)</li>
+            <li>\( T(n) \in \Theta (f(n)) \)</li>
+            <li>\( T(n) \in \Theta (n^{3}) \)</li>
+        </ul>
+
+
+        <li>\( T(n) = 32 T(n/4) + \Theta(\log n) \)</li>
+        <ul>
+            <li>\( d = 0 \)</li>
+            <li>\( e = 1 \)</li>
+            <li>\( \log _{b} a = \log _{4} 32 > 2 \)</li>
+            <li>\( \log _{b} a = \log _{4} 32 < 3 \)</li>
+            <li>\( \log _{4} 32 > 0 \)</li>
+            <li>\( T(n) \in \Theta (n^{\log _{b} a}) \)</li>
+            <li>\( T(n) \in \Theta (n^{\log _{4} 32}) \)</li>
+            <li>\( T(n) \in \Theta (n^{\frac{5}{2}}) \)</li>
+        </ul>
+
+
+        <li>\( T(n) = 27 T(n/3) + \Theta(n^3 \log^4 n) \)</li>
+        <ul>
+            <li>\( a = 27 \)</li>
+            <li>\( b = 3 \)</li>
+            <li>\( d = 3 \)</li>
+            <li>\( e = 4 \)</li>
+
+            <li>\( \log _{b} a = \log _{3} 27 = 3 \)</li>
+            <li>\( \log _{b} a = d \)</li>
+            <li>\( \log _{3} 27 = 3 \)</li>
+            <li>\( e > -1 \)</li>
+            <li>\( T(n) \in \Theta (f(n) \cdot \log n) \)</li>
+            <li>\( T(n) \in \Theta (n^3 \cdot \log n) \)</li>
+            
+        </ul>
+
+
+
+        <li>\( T(n) = 8 T(n/4) + \Theta((n / \log n)^{1{,}5}) \)</li>
+        <ul>
+            <li>\( T(n) = 8 T(n/4) + \Theta((n / \log n)^{1{,}5}) \)</li>
+            <li>\( T(n) = 8 T(n/4) + \Theta((n / \log n)^{\frac{3}{2}}) \)</li>
+            <li>\( T(n) = 8 T(n/4) + \Theta(\sqrt[3]{(n / \log n)^{2}} ) \)</li>
+
+            <li>\( a = 8 \)</li>
+            <li>\( b = 4 \)</li>
+            <li>\( d = \frac{3}{2} \)</li>
+            <li>\( e = - \frac{3}{2} \)</li>
+
+            <li>\( \log _{b} a = \log _{8} 4 = \frac{3}{2} \)</li>
+            <li>\( \log _{b} a = d \)</li>
+
+            <li>\( T(n) = \in \Theta(n ^ {\log _{8} 4}) =  \Theta(n ^ {\frac{3}{2}}) \)</li>
+        </ul>
+
+        <li>\( T(n) = 4 T(n/2) + \Theta(n^2 / \log n) \)</li>
+        <ul>
+            <li>\( a = 4 \)</li>
+            <li>\( b = 2 \)</li>
+            <li>\( d = 2 \)</li>
+            <li>\( e = -1 \)</li>
+
+            <li>\( \log _{b} a = \log _{2} 2 = 2 \)</li>
+            <li>\( \log _{b} a = d \)</li>
+
+            <li>\( T(n) \in \Theta(n^2 \log \log n) \)</li>
+        </ul>
+    </ol>
+
+    <h5>Resolução - Questão 3</h5>
+    <p>Assuma que \( f(n) = \alpha^n \). Desse modo, \( \alpha^n = \alpha^{n-1} + \alpha^{n-2} \)</p>
+    <ul>
+        <li>\( \alpha^n = \alpha^{n-1} + \alpha^{n-2} \)</li>
+        <li>Divisão por \( \alpha^{n-2} \) para que a função fique na forma \( ax + bx + c \)</li>
+        <li>\( \frac{\alpha^n}{\alpha^{n-2}} = \frac{\alpha^{n-1}}{\alpha^{n-2}} + \frac{\alpha^{n-2}}{\alpha^{n-2}} \)</li>
+        <li>\( \alpha^2 = \alpha + 1 \)</li>
+        <li>\( \alpha^2 - \alpha - 1 = 0 \)</li>
+        <li>Cálculo do discriminante</li>
+        <li>\( \Delta = (-1)^{2} - 4 \cdot -1 \cdot 1 \)</li>
+        <li>\( \Delta = 1 - -(4) \)</li>
+        <li>\( \Delta = 5 \)</li>
+        <li>Bhaskara</li>
+        <li>\( \alpha = \frac{-b \pm \sqrt{\Delta}}{2 \cdot a} \)</li>
+        <li>\( \alpha = \frac{1 \pm \sqrt{5}}{2} \)</li>
+        <li>\( \alpha ' = \frac{1 + \sqrt{5}}{2} \)</li>
+        <li>\( \alpha '' = \frac{1 - \sqrt{5}}{2} \)</li>
+        <li>Prova dos casos bases (n = 0)</li>
+        <li>\( 0 = c_1 \cdot \alpha '^{0} + c_2 \cdot \alpha''^{0} \)</li>
+        <li>\( 0 = c_1 \cdot 1 + c_2 \cdot 1 \)</li>
+        <li>\( 0 = c_1 + c_2 \)</li>
+        <li>\( c_1 = - c_2 \)</li>
+        <li>Prova dos casos bases (n = 1)</li>
+        <li>\( 1 = c_1 \cdot \alpha'^{1} + c_2 \cdot \alpha''^{1} \)</li>
+        <li>\( 1 = c_1 \cdot \alpha' + c_2 \cdot \alpha'' \)</li>
+        <li>\( 1 = c_1 \cdot \frac{1 + \sqrt{5}}{2} + c_2 \cdot \frac{1 - \sqrt{5}}{2} \)</li>
+        <li></li>
+        <li>\( 1 = \frac{1}{2} \cdot (1 + \sqrt{5}) \cdot c_1 + \frac{1}{2} \cdot (1 - \sqrt{5}) \cdot c_2 \)</li>
+        <li>\( 2 = (1 + \sqrt{5}) \cdot c_1 + (1 - \sqrt{5}) \cdot c_2 \)</li>
+        <li>\( 2 = 1 + \sqrt{5} \cdot c_1 + 1 - \sqrt{5} \cdot c_2 \)</li>
+        <li>\( 2 = 1 + 1  c_1 c_2 \)</li>
+        <li>\( 2 = 2 c_1 c_2 \)</li>
+        <li>\( 1 = c_1 c_2 \)</li>
+        <li>\( 1 = c_1 \)</li>
+        <li>\( 1 = c_2 \)</li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+
+
+    <h5>Resolução - Questão 4</h5>
+    <p>Sejam <i>imprime_oi</i> e <i>recursivo</i> funções \( imp(n) \) e \( rec(n) \)</p>
+    <ul>
+        <li>\( rec(n) \) tem 8 chamadas recursivas em temos de \( \frac{n}{2} \) que dá a noção de que se comporta como uma função logarítimica.</li>
+        <li>Daí, temos \( 8 \frac{n}{2} \) como um dos termos.</li>
+
+        <li>Como \( rec(n) \) faz chamadas  de \( imp(n) \) em termos de \( i \) e \( imp(n) \in \Theta(n^2) \), pela dominância do último termo, uma vez que \(  imp(n) \) é um polinômio.</li>
+
+        <li>\( rec(n) \in \Theta(n^2 log n) \)</li>
+    </ul>
+
+    <h5>Resolução - Questão 5</h5>
+    <p>\( T(n) = n T(n-1)+1,~ T(0)=1, \) então \( T(n) \geq n! \).</p>
+    <ul>
+        <li>\( T(n) = n T(n-1)+1 \)</li>
+        <li>\( T(n-1) = (n-1) \cdot T(n-2)+1 \)</li>
+        <li>\( T(n) = n \cdot (n-1) \cdot T(n-2)+1+1 \ldots \)</li>
+        <li>\( T(n) = \prod_{i=1}^{n} (i) + n \)</li>
+        <p>Se \( \sum_{i=1}^n \) representa o produto de todos os termos que variam de \( 1 \) a \( n \), como numa operação de fatorial, \( T(n) \geq n! \) por ter uma soma de \( n \) termos \( 1 \).</p>
+    </ul>
+    <!---------------------------------------------------------------------------------------------------------------------->
+    </body>
+</html>
+

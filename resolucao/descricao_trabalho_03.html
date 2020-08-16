@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Utilização de algoritmos de determinação de caminhos mínimos na descoberta de prazos mínimos para a conclusão de processos</h4>
+    
+    <h5>Descrição do Problema</h5>
+
+    <p>A busca pela otimizaçao de processos é uma tarefa recente,  uma vez que uma quantidade de empresas privadas ou serviços públicos almejam fazer mais em menos tempo, ou executar tarefas da melhor forma possível [Kalenkova et al. 2017]. Um processo pode ser representado como um diagrama, uma lista de tarefas, um autômato, uma rede de petri ([Erofeev and Wimmel 2017])  ou  grafo direcional. Esse último, alvo deste trabalho. Pode-se representar um processo como um grafo (segundo as definiçoes de grafos em [Arshad et al. 2016]) da seguinte forma:</p>
+
+    <ul>
+        <li>Um conjunto de tarefas \( T \) corresponde a um conjunto de vértices;</li>
+        <li>Um conjunto de prazos \( P \) (tempo maximo que se pode aguardar para uma tarefa \( u \)
+            seguir para uma tarefa \( v \) ). \( P \) é facilmente entendíveel como um conjunto de arestas
+            ponderadas positivamente.</li>
+    </ul>
+
+    <p>
+        O problema de encontrar caminhos mínimos entre todos os pares de vértices em um grafo surge na elaboração de uma tabela de distâncias entre todos os pares de tarefas de um processo. Tem-se um grafo orientado ponderado \( G = (T, P) \) com uma função peso \( w : T \rightarrow {\rm I\!R^{+}} \) que mapeia arestas para pesos de valores reais positivos de tempo. Deseja-se encontrar, para todos os pares de vértices \( u, v \in T \), um tempo mínimo (de peso mínimo) dentro dos limites máximos de espera de \( u \) a \( v \), onde o tempo máximo de espera é a soma dos pesos das arestas que o constituem. Normalmente, queremos a saída em forma tabular: a entrada na linha de \( u \) e na coluna de \( v \) deve ser o peso de um tempo de espera mínimo dentre o máximo possível de espera de \( u \) a \( v \) [Cormen et al. 2009].
+    </p>
+
+    <p>Este trabalho propõe resolver essa problemática com os seguintes algoritmos:</p>
+
+    <h5>Algoritmo I - Floyd-Warshall</h5>
+
+    <p> O algoritmo de programação dinâmica de <i>Floyd-Warshall</i> recebe como entrada uma matriz quadrada de adjacência de ordem \( |V| \) (onde \( |V| \) corresponde à quantidade de vértices do grafo) tal qual cada elemento possui um valor correspondente ao peso da aresta, o que equivale à distância entre dois vértices adjacentes. O valor pode também ser \( \infty \) quando não há uma conexão entre dois vértices. Essa matriz representa um grafo \( (V,E) \) orientado e valorado.
+
+    O valor de um caminho entre dois vértices é a soma dos valores de todas as arestas ao longo desse caminho. O conjunto das arestas \( E \) do grafo podem ter valores negativos, mas o grafo não pode conter nenhum ciclo de valor negativo, porém não é o caso dos valores de espera num processo.
+
+    O algoritmo calcula, para cada par de vértices, o menor de todos os caminhos entre os vértices. Por exemplo, o caminho de menor custo. Sua ordem de complexidade é \( \Theta |V|^{3} \) e possui uma característica vantajosa em relação ao algoritmo de Dijkstra por ter uma implementação mais simples [Skiena 1998] <sup><a href="https://pt.wikipedia.org/wiki/Algoritmo_de_Floyd-Warshall">Algoritmo de Floyd-Warshall</a></sup>.
+
+    A saída do algoritmo de <i>Floyd-Warshall</i> é uma matriz com as distâncias mais curtas entre cada par de vértices como mostra o Algoritmo I.
+    </p>
+
+    <img src="https://i.ibb.co/Jt26gmx/floyd-warshall.png" alt="floyd-warshall" border="0">
+    
+    <h5>Algoritmo II - Johnson</h5>
+
+    <p>
+        Segundo [Abu-Ryash and Tamimi 2015, Cormen et al. 2009], o algoritmo de <i>Johnson</i> é uma maneira de encontrar o menor caminho entre dois vértices em um grafo onde não existe ciclo negativo. Como entrada, ele recebe um grafo e retorna uma matriz com o menor caminho entre todos os pares de vértices ou, se houver ciclo negativo, irá retornar falha. O algoritmo utiliza como sub-rotinas os  algoritmos de <i>Bellman-Ford</i> (Algoritmo III [Arshad et al. 2016], para tratar as arestas com possíveis pesos negativos, e de <i>Dijkstra</i> (Algoritmo IV [Arshad et al. 2016])  para fornecer o menor caminho entre os vértices. O algoritmo funciona desta forma:
+    </p>
+
+    <ul>
+        <li>Introduz um novo vértice \( z \) com arestas o ligando com todos os outros vértices com os pesos iguais a 0;</li>
+        <li>Aplica-se o algoritmo de <i>Bellman-Ford</i> para encontrar o caminho mínimo do novo vértice \( z \) para cada vértice $y$. Se existir um ciclo negativo, o algoritmo retorna falha;</li>
+        <li>O grafo é atualizado com os novos pesos, que foram calculados no passo anterior;</li>
+        <li>O vértice \( z \) é removido e o menor caminho entre todos os vértices é calculado utilizando o algoritmo de <i>Dijkstra</i>.</li>
+    </ul>
+
+    <p>Segundo [Arshad et al. 2016], a complexidade do algoritmo de <i>Johnson</i> é \( O(V^{2} log V + V E \). O algoritmo de <i>Bellman-Ford</i> é da ordem de \( O(V E) \) e o algoritmo de <i>Dijkstra</i>, por sua vez, é da ordem de \( O(V log V + E) \). O pseudo-código para o algoritmo ([Abu-Ryash and Tamimi 2015]) é apresentado no Algoritmo</p>
+
+    <img src="https://i.ibb.co/wyJW5ch/jonhson.png" alt="jonhson" border="0">
+
+    <h5>Apêndice</h5>
+
+    <img src="https://i.ibb.co/rd60Kvm/bellman-ford.png" alt="bellman-ford" border="0">
+
+    <img src="https://i.ibb.co/qRDQ484/dijkstra.png" alt="dijkstra" border="0">
+
+    <h5>Referências</h5>
+    <ol>
+        <li>Abu-Ryash, H. and Tamimi, A. A. (2015). Comparison studies for different shortest path
+        algorithms. International Journal of Computers & Technology, 14(8):5979–5986.</li>
+
+        <li>Arshad, R., Shahid, M. A., Khan, D., and Shah, S. H. H. (2016). Study and analysis of shortest path algorithms. In Proceedings of 2nd International Multi-Disciplinary Conference, volume 19, page 20.</li>
+
+        <li>Cormen, T. H., Leiserson, C. E., Rivest, R. L., and Stein, C. (2009). Introduction to algorithms. MIT press.</li>
+    
+        <li>Erofeev, E. and Wimmel, H. (2017). Reachability graphs of two-transition petri nets. In ATAED@ Petri Nets/ACSD, pages 39–54.</li>
+    
+        <li>Kalenkova, A., Ageev, A., Lomazova, I. A., and van der Aalst, W. M. (2017). Egovernment services: Comparing real and expected user behavior. In International Conference on Business Process Management, pages 484–496. Springer.</li>
+        
+        <li>Skiena, S. S. (1998). The algorithm design manual: Text, volume 1. Springer Science & Business Media.</li>
+                
+        <li>Szwarcfiter, Jayme Luiz. Teoria computacional de grafos: Os Algoritmos. Elsevier Brasil, 2018.</li>
+        
+    </ol>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    </body>
+</html>
+
