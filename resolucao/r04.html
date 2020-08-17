@@ -25,270 +25,211 @@
             <ul>
                 <li>A tabela seguinte mostram os dados obtidos pela execução do algoritmo de acordo com o tamanho da entrada</li>
                 <li>
-                    <table border="1" class="dataframe">
-                        <thead>
-                          <tr style="text-align: right;">
-                            <th></th>
-                            <th>Entrada \( 2^{i} \)</th>
-                            <th>Valor de soma</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>0</th>
-                            <td>\( 2^{1} = \) 2</td>
-                            <td>1</td>
-                          </tr>
-                          <tr>
-                            <th>1</th>
-                            <td>\( 2^{2} = \) 4</td>
-                            <td>4</td>
-                          </tr>
-                          <tr>
-                            <th>2</th>
-                            <td>\( 2^{3} = \) 8</td>
-                            <td>16</td>
-                          </tr>
-                          <tr>
-                            <th>3</th>
-                            <td>\( 2^{4} = \) 16</td>
-                            <td>64</td>
-                          </tr>
-                          <tr>
-                            <th>4</th>
-                            <td>\( 2^{5} = \) 32</td>
-                            <td>256</td>
-                          </tr>
-                          <tr>
-                            <th>5</th>
-                            <td>\( 2^{6} = \) 64</td>
-                            <td>1024</td>
-                          </tr>
-                          <tr>
-                            <th>6</th>
-                            <td>\( 2^{7} = \) 128</td>
-                            <td>4096</td>
-                          </tr>
-                          <tr>
-                            <th>7</th>
-                            <td>\( 2^{8} = \) 256</td>
-                            <td>16384</td>
-                          </tr>
-                          <tr>
-                            <th>8</th>
-                            <td>\( 2^{9} = \) 512</td>
-                            <td>65536</td>
-                          </tr>
-                          <tr>
-                            <th>9</th>
-                            <td>\( 2^{10} = \) 1024</td>
-                            <td>262144</td>
-                          </tr>
-                          <tr>
-                            <th>10</th>
-                            <td>\( 2^{11} = \) 2048</td>
-                            <td>1048576</td>
-                          </tr>
-                          <tr>
-                            <th>11</th>
-                            <td>\( 2^{12} = \) 4096</td>
-                            <td>4194304</td>
-                          </tr>
-                          <tr>
-                            <th>12</th>
-                            <td>\( 2^{13} = \) 8192</td>
-                            <td>16777216</td>
-                          </tr>
-                          <tr>
-                            <th>13</th>
-                            <td>\( 2^{14} = \) 16384</td>
-                            <td>67108864</td>
-                          </tr>
-                        </tbody>
-                    </table>
+                  <table border="1" class="dataframe">
+                    <thead>
+                      <tr style="text-align: right;">
+                        <th></th>
+                        <th>Entrada \( 2^{i} \)</th>
+                        <th>Valor de soma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>0</th>
+                        <td>\( 2^{2} = \) 4</td>
+                        <td>7</td>
+                      </tr>
+                      <tr>
+                        <th>1</th>
+                        <td>\( 2^{3} = \) 8</td>
+                        <td>15</td>
+                      </tr>
+                      <tr>
+                        <th>2</th>
+                        <td>\( 2^{4} = \) 16</td>
+                        <td>31</td>
+                      </tr>
+                      <tr>
+                        <th>3</th>
+                        <td>\( 2^{5} = \) 32</td>
+                        <td>63</td>
+                      </tr>
+                      <tr>
+                        <th>4</th>
+                        <td>\( 2^{6} = \) 64</td>
+                        <td>127</td>
+                      </tr>
+                      <tr>
+                        <th>5</th>
+                        <td>\( 2^{7} = \) 128</td>
+                        <td>255</td>
+                      </tr>
+                      <tr>
+                        <th>6</th>
+                        <td>\( 2^{8} = \) 256</td>
+                        <td>511</td>
+                      </tr>
+                      <tr>
+                        <th>7</th>
+                        <td>\( 2^{9} = \) 512</td>
+                        <td>1023</td>
+                      </tr>
+                      <tr>
+                        <th>8</th>
+                        <td>\( 2^{10} = \) 1024</td>
+                        <td>2047</td>
+                      </tr>
+                      <tr>
+                        <th>9</th>
+                        <td>\( 2^{11} = \) 2048</td>
+                        <td>4095</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </li>
-                <li> É fácil ver que as iteraçõe da terceira coluna se comportam da forma \( 4^{i-1} \), onde \( i \) é o valor na iteração. </li>
-                <li>Então, tem-se que o numero de vezes em que <code>soma++</code> é \( \Theta (4^{N}) \)</li>
+                <li> É fácil ver que as iteraçõe da terceira coluna se comportam da forma \( (2 \cdot 2^{i})-1 \), onde \( i \) é o valor na iteração. </li>
+                <li>Então, tem-se que o numero de vezes em que <code>soma++</code> é \( \Theta (2N) \)</li>
             </ul>
 
 
             <p>Algoritmo 2</p>
             <ul>
                 <li>
-                    <table border="1" class="dataframe">
-                        <thead>
-                        <tr style="text-align: right;">
-                            <th></th>
-                            <th>Entrada \( 2^{i} \)</th>
-                            <th>Valor de soma</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th>0</th>
-                            <td>\( 2^{1} = \) 2</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <td>\( 2^{2} = \) 4</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>\( 2^{3} = \) 8</td>
-                            <td>56</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>\( 2^{4} = \) 16</td>
-                            <td>240</td>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <td>\( 2^{5} = \) 32</td>
-                            <td>992</td>
-                        </tr>
-                        <tr>
-                            <th>5</th>
-                            <td>\( 2^{6} = \) 64</td>
-                            <td>4032</td>
-                        </tr>
-                        <tr>
-                            <th>6</th>
-                            <td>\( 2^{7} = \) 128</td>
-                            <td>16256</td>
-                        </tr>
-                        <tr>
-                            <th>7</th>
-                            <td>\( 2^{8} = \) 256</td>
-                            <td>65280</td>
-                        </tr>
-                        <tr>
-                            <th>8</th>
-                            <td>\( 2^{9} = \) 512</td>
-                            <td>261632</td>
-                        </tr>
-                        <tr>
-                            <th>9</th>
-                            <td>\( 2^{10} = \) 1024</td>
-                            <td>1047552</td>
-                        </tr>
-                        <tr>
-                            <th>10</th>
-                            <td>\( 2^{11} = \) 2048</td>
-                            <td>4192256</td>
-                        </tr>
-                        <tr>
-                            <th>11</th>
-                            <td>\( 2^{12} = \) 4096</td>
-                            <td>16773120</td>
-                        </tr>
-                        <tr>
-                            <th>12</th>
-                            <td>\( 2^{13} = \) 8192</td>
-                            <td>67100672</td>
-                        </tr>
-                        <tr>
-                            <th>13</th>
-                            <td>\( 2^{14} = \) 16384</td>
-                            <td>268419072</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                  <table border="1" class="dataframe">
+                    <thead>
+                      <tr style="text-align: right;">
+                        <th></th>
+                        <th>Entrada \( 2^{i} \)</th>
+                        <th>Valor de soma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>0</th>
+                        <td>\( 2^{2} = \) 4</td>
+                        <td>7</td>
+                      </tr>
+                      <tr>
+                        <th>1</th>
+                        <td>\( 2^{3} = \) 8</td>
+                        <td>15</td>
+                      </tr>
+                      <tr>
+                        <th>2</th>
+                        <td>\( 2^{4} = \) 16</td>
+                        <td>31</td>
+                      </tr>
+                      <tr>
+                        <th>3</th>
+                        <td>\( 2^{5} = \) 32</td>
+                        <td>63</td>
+                      </tr>
+                      <tr>
+                        <th>4</th>
+                        <td>\( 2^{6} = \) 64</td>
+                        <td>127</td>
+                      </tr>
+                      <tr>
+                        <th>5</th>
+                        <td>\( 2^{7} = \) 128</td>
+                        <td>255</td>
+                      </tr>
+                      <tr>
+                        <th>6</th>
+                        <td>\( 2^{8} = \) 256</td>
+                        <td>511</td>
+                      </tr>
+                      <tr>
+                        <th>7</th>
+                        <td>\( 2^{9} = \) 512</td>
+                        <td>1023</td>
+                      </tr>
+                      <tr>
+                        <th>8</th>
+                        <td>\( 2^{10} = \) 1024</td>
+                        <td>2047</td>
+                      </tr>
+                      <tr>
+                        <th>9</th>
+                        <td>\( 2^{11} = \) 2048</td>
+                        <td>4095</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </li>
-                <li> As iterações da terceira coluna se comportam da forma \( 2^{i} \cdot (2^{i} -1 ) \), onde \( i \) é o valor na iteração. </li>
-                <li>Então, tem-se que o numero de vezes em que <code>soma++</code> é \( \Theta (2^{2N}) \)</li>
+                <li> As iterações da terceira coluna se comportam da forma \( 2 \cdot (2^{i}) - 2  \), onde \( i \) é o valor na iteração. </li>
+                <li>Então, tem-se que o numero de vezes em que <code>soma++</code> é \( \Theta (2N) \)</li>
             </ul>
 
             
             <p>Algoritmo 3</p>
             <ul>
                 <li>
-                    <table border="1" class="dataframe">
-                        <thead>
-                          <tr style="text-align: right;">
-                            <th></th>
-                            <th>Entrada \( 2^{i} \)</th>
-                            <th>Valor de soma</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>0</th>
-                            <td>\( 2^{1} = \) 2</td>
-                            <td>2</td>
-                          </tr>
-                          <tr>
-                            <th>1</th>
-                            <td>\( 2^{2} = \) 4</td>
-                            <td>12</td>
-                          </tr>
-                          <tr>
-                            <th>2</th>
-                            <td>\( 2^{3} = \) 8</td>
-                            <td>56</td>
-                          </tr>
-                          <tr>
-                            <th>3</th>
-                            <td>\( 2^{4} = \) 16</td>
-                            <td>240</td>
-                          </tr>
-                          <tr>
-                            <th>4</th>
-                            <td>\( 2^{5} = \) 32</td>
-                            <td>992</td>
-                          </tr>
-                          <tr>
-                            <th>5</th>
-                            <td>\( 2^{6} = \) 64</td>
-                            <td>4032</td>
-                          </tr>
-                          <tr>
-                            <th>6</th>
-                            <td>\( 2^{7} = \) 128</td>
-                            <td>16256</td>
-                          </tr>
-                          <tr>
-                            <th>7</th>
-                            <td>\( 2^{8} = \) 256</td>
-                            <td>65280</td>
-                          </tr>
-                          <tr>
-                            <th>8</th>
-                            <td>\( 2^{9} = \) 512</td>
-                            <td>261632</td>
-                          </tr>
-                          <tr>
-                            <th>9</th>
-                            <td>\( 2^{10} = \) 1024</td>
-                            <td>1047552</td>
-                          </tr>
-                          <tr>
-                            <th>10</th>
-                            <td>\( 2^{11} = \) 2048</td>
-                            <td>4192256</td>
-                          </tr>
-                          <tr>
-                            <th>11</th>
-                            <td>\( 2^{12} = \) 4096</td>
-                            <td>16773120</td>
-                          </tr>
-                          <tr>
-                            <th>12</th>
-                            <td>\( 2^{13} = \) 8192</td>
-                            <td>67100672</td>
-                          </tr>
-                          <tr>
-                            <th>13</th>
-                            <td>\( 2^{14} = \) 16384</td>
-                            <td>268419072</td>
-                          </tr>
-                        </tbody>
-                    </table>
+                  <table border="1" class="dataframe">
+                    <thead>
+                      <tr style="text-align: right;">
+                        <th></th>
+                        <th>Entrada \( 2^{i} \)</th>
+                        <th>Valor de soma</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>0</th>
+                        <td>\( 2^{2} = \) 4</td>
+                        <td>12</td>
+                      </tr>
+                      <tr>
+                        <th>1</th>
+                        <td>\( 2^{3} = \) 8</td>
+                        <td>32</td>
+                      </tr>
+                      <tr>
+                        <th>2</th>
+                        <td>\( 2^{4} = \) 16</td>
+                        <td>80</td>
+                      </tr>
+                      <tr>
+                        <th>3</th>
+                        <td>\( 2^{5} = \) 32</td>
+                        <td>192</td>
+                      </tr>
+                      <tr>
+                        <th>4</th>
+                        <td>\( 2^{6} = \) 64</td>
+                        <td>448</td>
+                      </tr>
+                      <tr>
+                        <th>5</th>
+                        <td>\( 2^{7} = \) 128</td>
+                        <td>1024</td>
+                      </tr>
+                      <tr>
+                        <th>6</th>
+                        <td>\( 2^{8} = \) 256</td>
+                        <td>2304</td>
+                      </tr>
+                      <tr>
+                        <th>7</th>
+                        <td>\( 2^{9} = \) 512</td>
+                        <td>5120</td>
+                      </tr>
+                      <tr>
+                        <th>8</th>
+                        <td>\( 2^{10} = \) 1024</td>
+                        <td>11264</td>
+                      </tr>
+                      <tr>
+                        <th>9</th>
+                        <td>\( 2^{11} = \) 2048</td>
+                        <td>24576</td>
+                      </tr>
+                    </tbody>
+                  </table>  
                 </li>
-                <li> As iterações da terceira coluna se comportam da forma \( 2^{i} \cdot (2^{i} -1 ) \), onde \( i \) é o valor na iteração. </li>
-                <li>Então, tem-se que o numero de vezes em que <code>soma++</code> é \( \Theta (2^{2N}) \)</li>
+                <li> Aqui há a variação de \( j \) até \( N \). </li>
+                <li> E uma variação de \( i \) até \( N \). Com \( i \) tendo seu valor dobrado a cada iteração. Isso possui um comportamento de \( log \).</li>
+                <li>Então, tem-se que o numero de vezes em que <code>soma++</code> é \( \Theta (N \log(N)) \)</li>
             </ul>
 
         </li>
@@ -298,259 +239,459 @@
             <p>Algoritmo 1</p>
             <ul>
                 <li>
-                    <table border="1" class="dataframe">
-                        <thead>
-                          <tr style="text-align: right;">
-                            <th></th>
-                            <th>Entrada \( 2^{i} \)</th>
-                            <th>Convergência (tempo)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>0</th>
-                            <td>1</td>
-                            <td>0.463768</td>
-                          </tr>
-                          <tr>
-                            <th>1</th>
-                            <td>2</td>
-                            <td>3.531250</td>
-                          </tr>
-                          <tr>
-                            <th>2</th>
-                            <td>3</td>
-                            <td>1.380531</td>
-                          </tr>
-                          <tr>
-                            <th>3</th>
-                            <td>4</td>
-                            <td>5.006410</td>
-                          </tr>
-                          <tr>
-                            <th>4</th>
-                            <td>5</td>
-                            <td>1.043534</td>
-                          </tr>
-                          <tr>
-                            <th>5</th>
-                            <td>6</td>
-                            <td>2.128834</td>
-                          </tr>
-                          <tr>
-                            <th>6</th>
-                            <td>7</td>
-                            <td>3.666859</td>
-                          </tr>
-                          <tr>
-                            <th>7</th>
-                            <td>8</td>
-                            <td>4.496856</td>
-                          </tr>
-                          <tr>
-                            <th>8</th>
-                            <td>9</td>
-                            <td>4.568527</td>
-                          </tr>
-                          <tr>
-                            <th>9</th>
-                            <td>10</td>
-                            <td>2.837599</td>
-                          </tr>
-                          <tr>
-                            <th>10</th>
-                            <td>11</td>
-                            <td>5.312764</td>
-                          </tr>
-                          <tr>
-                            <th>11</th>
-                            <td>12</td>
-                            <td>3.422712</td>
-                          </tr>
-                          <tr>
-                            <th>12</th>
-                            <td>13</td>
-                            <td>4.470489</td>
-                          </tr>
-                          <tr>
-                            <th>13</th>
-                            <td>14</td>
-                            <td>4.639834</td>
-                          </tr>
-                        </tbody>
-                    </table>                    
+                  <table border="1" class="dataframe">
+                    <thead>
+                      <tr style="text-align: right;">
+                        <th></th>
+                        <th>Entrada \( 2^{i} \)</th>
+                        <th>Convergência (tempo)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>0</th>
+                        <td>16</td>
+                        <td>2.560086</td>
+                      </tr>
+                      <tr>
+                        <th>1</th>
+                        <td>17</td>
+                        <td>2.177310</td>
+                      </tr>
+                      <tr>
+                        <th>2</th>
+                        <td>18</td>
+                        <td>1.319683</td>
+                      </tr>
+                      <tr>
+                        <th>3</th>
+                        <td>19</td>
+                        <td>1.985913</td>
+                      </tr>
+                      <tr>
+                        <th>4</th>
+                        <td>20</td>
+                        <td>2.083976</td>
+                      </tr>
+                      <tr>
+                        <th>5</th>
+                        <td>21</td>
+                        <td>1.964915</td>
+                      </tr>
+                      <tr>
+                        <th>6</th>
+                        <td>22</td>
+                        <td>1.966387</td>
+                      </tr>
+                      <tr>
+                        <th>7</th>
+                        <td>23</td>
+                        <td>2.034072</td>
+                      </tr>
+                      <tr>
+                        <th>8</th>
+                        <td>24</td>
+                        <td>1.993613</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </li>
-                <li>Converge para \( 4 \)</li>
+                <li>Converge para \( 2 \)</li>
+                <li>\( 2N = 2 \)</li>
+                <li>\( N = 1 \)</li>
+                <li>Grau \( 1 \)</li>
 
                 <p>Algoritmo 2</p>
                 <li>
-                    <table border="1" class="dataframe">
-                        <thead>
-                          <tr style="text-align: right;">
-                            <th></th>
-                            <th>Entrada \( 2^{i} \)</th>
-                            <th>Convergência (tempo)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>0</th>
-                            <td>2</td>
-                            <td>0.520833</td>
-                          </tr>
-                          <tr>
-                            <th>1</th>
-                            <td>3</td>
-                            <td>4.400000</td>
-                          </tr>
-                          <tr>
-                            <th>2</th>
-                            <td>4</td>
-                            <td>1.463636</td>
-                          </tr>
-                          <tr>
-                            <th>3</th>
-                            <td>5</td>
-                            <td>3.434783</td>
-                          </tr>
-                          <tr>
-                            <th>4</th>
-                            <td>6</td>
-                            <td>2.676311</td>
-                          </tr>
-                          <tr>
-                            <th>5</th>
-                            <td>7</td>
-                            <td>4.406081</td>
-                          </tr>
-                          <tr>
-                            <th>6</th>
-                            <td>8</td>
-                            <td>5.646680</td>
-                          </tr>
-                          <tr>
-                            <th>7</th>
-                            <td>9</td>
-                            <td>4.665526</td>
-                          </tr>
-                          <tr>
-                            <th>8</th>
-                            <td>10</td>
-                            <td>3.144359</td>
-                          </tr>
-                          <tr>
-                            <th>9</th>
-                            <td>11</td>
-                            <td>4.376936</td>
-                          </tr>
-                          <tr>
-                            <th>10</th>
-                            <td>12</td>
-                            <td>3.840643</td>
-                          </tr>
-                          <tr>
-                            <th>11</th>
-                            <td>13</td>
-                            <td>4.287341</td>
-                          </tr>
-                        </tbody>
-                    </table>
+                  <table border="1" class="dataframe">
+                    <thead>
+                      <tr style="text-align: right;">
+                        <th></th>
+                        <th>Entrada \( 2^{i} \)</th>
+                        <th>Convergência (tempo)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>0</th>
+                        <td>21</td>
+                        <td>1.982682</td>
+                      </tr>
+                      <tr>
+                        <th>1</th>
+                        <td>22</td>
+                        <td>2.129475</td>
+                      </tr>
+                      <tr>
+                        <th>2</th>
+                        <td>23</td>
+                        <td>2.392764</td>
+                      </tr>
+                      <tr>
+                        <th>3</th>
+                        <td>24</td>
+                        <td>1.807070</td>
+                      </tr>
+                      <tr>
+                        <th>4</th>
+                        <td>25</td>
+                        <td>2.229589</td>
+                      </tr>
+                      <tr>
+                        <th>5</th>
+                        <td>26</td>
+                        <td>1.936808</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </li>
-                <li>Converge para \( 2^{2} \)</li>
+                <li>Converge para \( 2 \)</li>
+                <li>\( 2N = 2 \)</li>
+                <li>\( N = 1 \)</li>
+                <li>Grau \( 1 \)</li>
 
                 <p>Algoritmo 3</p>
                 <li>
-                    <table border="1" class="dataframe">
-                        <thead>
-                          <tr style="text-align: right;">
-                            <th></th>
-                            <th>Entrada \( 2^{i} \)</th>
-                            <th>Convergência (tempo)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th>0</th>
-                            <td>2</td>
-                            <td>0.712121</td>
-                          </tr>
-                          <tr>
-                            <th>1</th>
-                            <td>3</td>
-                            <td>2.361702</td>
-                          </tr>
-                          <tr>
-                            <th>2</th>
-                            <td>4</td>
-                            <td>1.972973</td>
-                          </tr>
-                          <tr>
-                            <th>3</th>
-                            <td>5</td>
-                            <td>3.109589</td>
-                          </tr>
-                          <tr>
-                            <th>4</th>
-                            <td>6</td>
-                            <td>3.396476</td>
-                          </tr>
-                          <tr>
-                            <th>5</th>
-                            <td>7</td>
-                            <td>4.233031</td>
-                          </tr>
-                          <tr>
-                            <th>6</th>
-                            <td>8</td>
-                            <td>3.677867</td>
-                          </tr>
-                          <tr>
-                            <th>7</th>
-                            <td>9</td>
-                            <td>4.702055</td>
-                          </tr>
-                          <tr>
-                            <th>8</th>
-                            <td>10</td>
-                            <td>2.148263</td>
-                          </tr>
-                          <tr>
-                            <th>9</th>
-                            <td>11</td>
-                            <td>4.277138</td>
-                          </tr>
-                          <tr>
-                            <th>10</th>
-                            <td>12</td>
-                            <td>3.977777</td>
-                          </tr>
-                        </tbody>
-                    </table>
+                  <table border="1" class="dataframe">
+                    <thead>
+                      <tr style="text-align: right;">
+                        <th></th>
+                        <th>Entrada \( 2^{i} \)</th>
+                        <th>Convergência (tempo)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>0</th>
+                        <td>16</td>
+                        <td>1.635607</td>
+                      </tr>
+                      <tr>
+                        <th>1</th>
+                        <td>17</td>
+                        <td>1.416137</td>
+                      </tr>
+                      <tr>
+                        <th>2</th>
+                        <td>18</td>
+                        <td>2.234763</td>
+                      </tr>
+                      <tr>
+                        <th>3</th>
+                        <td>19</td>
+                        <td>2.082694</td>
+                      </tr>
+                      <tr>
+                        <th>4</th>
+                        <td>20</td>
+                        <td>2.036296</td>
+                      </tr>
+                      <tr>
+                        <th>5</th>
+                        <td>21</td>
+                        <td>2.117811</td>
+                      </tr>
+                      <tr>
+                        <th>6</th>
+                        <td>22</td>
+                        <td>2.173624</td>
+                      </tr>
+                      <tr>
+                        <th>7</th>
+                        <td>23</td>
+                        <td>2.787213</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </li>
-                <li>Converge para \( 2^{2} \)</li>
+                <li>Converge para a constante de Euler \( e \).</li>
+                <li>\( N \log(N) = e \)</li>
+                <li>\( N = e \)</li>
             </ul>
         </li>
 
         <!-- item c -->
         <li>
-            
+            <hr>
+            <ul>  
+              <p>Algoritmo 1</p>
+              <li>Para iterações com tamanhos de entradas \( 2^{i} \), com \( i \) variando de \( 1 \) à \( 25 \)</li>
+              <li>
+                <table border="1" class="dataframe">
+                  <thead>
+                    <tr style="text-align: right;">
+                      <th></th>
+                      <th>Entrada</th>
+                      <th>Tempo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>0</th>
+                      <td>\( 2^{19} = \) 524288</td>
+                      <td>1.192093e-06</td>
+                    </tr>
+                    <tr>
+                      <th>1</th>
+                      <td>\( 2^{20} = \) 1048576</td>
+                      <td>9.536743e-07</td>
+                    </tr>
+                    <tr>
+                      <th>2</th>
+                      <td>\( 2^{21} = \) 2097152</td>
+                      <td>9.536743e-07</td>
+                    </tr>
+                    <tr>
+                      <th>3</th>
+                      <td>\( 2^{22} = \) 4194304</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                    <tr>
+                      <th>4</th>
+                      <td>\( 2^{23} = \) 8388608</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                    <tr>
+                      <th>5</th>
+                      <td>\( 2^{24} = \) 16777216</td>
+                      <td>9.536743e-07</td>
+                    </tr>
+                    <tr>
+                      <th>6</th>
+                      <td>\( 2^{25} = \) 33554432</td>
+                      <td>1.192093e-06</td>
+                    </tr>
+                  </tbody>
+                </table>                
+              </li>
+              <li>Coeficiente : \( 0.299 \)</li>
+              <li>Grau : \( 1 \)</li>
+              <li>Constante: \( \frac{1.1920928955078125e-06}{2^{25}} = 3.552713678800501e-14 \)</li>
+            </ul>
+
+            <hr>
+            <ul>
+              <p>Algoritmo 2</p>
+              <li>Para iterações com tamanhos de entradas \( 2^{i} \), com \( i \) variando de \( 1 \) à \( 25 \)</li>
+              <li>
+                <table border="1" class="dataframe">
+                  <thead>
+                    <tr style="text-align: right;">
+                      <th></th>
+                      <th>Entrada</th>
+                      <th>Tempo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>0</th>
+                      <td>\( 2^{19} = \) 524288</td>
+                      <td>9.536743e-07</td>
+                    </tr>
+                    <tr>
+                      <th>1</th>
+                      <td>\( 2^{20} = \) 1048576</td>
+                      <td>9.536743e-07</td>
+                    </tr>
+                    <tr>
+                      <th>2</th>
+                      <td>\( 2^{21} = \) 2097152</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                    <tr>
+                      <th>3</th>
+                      <td>\( 2^{22} = \) 4194304</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                    <tr>
+                      <th>4</th>
+                      <td>\( 2^{23} = \) 8388608</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                    <tr>
+                      <th>5</th>
+                      <td>\( 2^{24} = \) 16777216</td>
+                      <td>1.192093e-06</td>
+                    </tr>
+                    <tr>
+                      <th>6</th>
+                      <td>\( 2^{25} = \) 33554432</td>
+                      <td>2.384186e-06</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>Coeficiente : \( 2.36 \)</li>
+              <li>Grau : \( 1 \)</li>
+              <li>Constante: \( \frac{2.384185791015625e-06}{{2^{25}}} = 7.105427357601002e-14 \)</li>
+            </ul>
+
+            <hr>
+            <ul>
+              <p>Algoritmo 3</p>
+              <li>Para iterações com tamanhos de entradas \( 2^{i} \), com \( i \) variando de \( 1 \) à \( 25 \)</li>
+              <li>
+                <table border="1" class="dataframe">
+                  <thead>
+                    <tr style="text-align: right;">
+                      <th></th>
+                      <th>Entrada</th>
+                      <th>Tempo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>0</th>
+                      <td>\( 2^{19} = \) 524288</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                    <tr>
+                      <th>1</th>
+                      <td>\( 2^{20} = \) 1048576</td>
+                      <td>9.536743e-07</td>
+                    </tr>
+                    <tr>
+                      <th>2</th>
+                      <td>\( 2^{21} = \) 2097152</td>
+                      <td>4.768372e-07</td>
+                    </tr>
+                    <tr>
+                      <th>3</th>
+                      <td>\( 2^{22} = \) 4194304</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                    <tr>
+                      <th>4</th>
+                      <td>\( 2^{23} = \) 8388608</td>
+                      <td>2.145767e-06</td>
+                    </tr>
+                    <tr>
+                      <th>5</th>
+                      <td>\( 2^{24} = \) 16777216</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                    <tr>
+                      <th>6</th>
+                      <td>\( 2^{25} = \) 33554432</td>
+                      <td>7.152557e-07</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>Coeficiente : \( 0.75 \)</li>
+              <li>Grau : \( 1 \)</li>
+              <li>Constante: \( \frac{7.152557373046875e-07}{2^{25}} = 2.1316282072803006e-14 \)</li>
+            </ul>
+
         </li>
+
+      </li>
         
         <!-- item d -->
-        <li>
-            <p></p>        
+        <li>        
+            <ul>
+              <p>Algoritmo 1</p>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot c \)</li>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot 3.552713678800501e-14 \)</li>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot 2.1316282072803006e-05 \)</li>
+            </ul>
+
+            <ul>
+              <p>Algoritmo 2</p>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot c \)</li>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot 7.105427357601002e-14 \)</li>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot 4.263256414560601e-05 \)</li>
+            </ul>
+
+            <ul>
+              <p>Algoritmo 3</p>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot c \)</li>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot 2.1316282072803006e-14 \)</li>
+              <li>\(3 \cdot 10^{8} \cdot 2 \cdot 1.2789769243681803e-05 \)</li>
+            </ul>
         </li>
         
         <!-- item e -->
         <li>
-            <p></p>        
+            <p>Porque na forma básica, em \( a \cdot N \cdot \log(b) \), \( b^{a} = 1 \) é linear.</p>        
         </li>        
     </ol>
 
     <h5>Resolução - Questão 2</h5>
-    <p></p>
+    <p>Algoritmo f</p>
+    <ul> 
+      <li>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th></th>
+              <th>Entrada</th>
+              <th>Tempo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>0</th>
+              <td>\( 10 = \) 1024</td>
+              <td>1.430511e-06</td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>\( 11 = \) 2048</td>
+              <td>4.768372e-07</td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>\( 12 = \) 4096</td>
+              <td>2.384186e-07</td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>\( 13 = \) 8192</td>
+              <td>7.152557e-07</td>
+            </tr>
+            <tr>
+              <th>4</th>
+              <td>\( 14 = \) 16384</td>
+              <td>4.768372e-07</td>
+            </tr>
+            <tr>
+              <th>5</th>
+              <td>\( 15 = \) 32768</td>
+              <td>9.536743e-07</td>
+            </tr>
+            <tr>
+              <th>6</th>
+              <td>\( 16 = \) 65536</td>
+              <td>1.192093e-06</td>
+            </tr>
+            <tr>
+              <th>7</th>
+              <td>\( 17 = \) 131072</td>
+              <td>1.192093e-06</td>
+            </tr>
+            <tr>
+              <th>8</th>
+              <td>\( 18 = \) 262144</td>
+              <td>7.152557e-07</td>
+            </tr>
+            <tr>
+              <th>9</th>
+              <td>\( 19 = \) 524288</td>
+              <td>9.536743e-07</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>Coeficiente : \( 0.73 \)</li>
+      <li>Constante: \( \frac{9.5367431640625e-07}{19} = 5.0193385074013155e-08 \)</li> 
+      <li>\(10^{2} \cdot 1 \cdot c \)</li>
+      <li>\(10^{2} \cdot 1 \cdot 5.0193385074013155e-08 \)</li>
+      <li>\(10^{2} \cdot 1 \cdot 5.0193385074013155e-08 = 5.019338507401315e-06 \)</li>
+    </ul>
     
     <!---------------------------------------------------------------------------------------------------------------------->
     </body>
 </html>
+
 
