@@ -1,0 +1,249 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Projeto e corretude de algoritmos iterativos</h4>
+    
+    <h5>Resolução - Questão 1</h5>
+
+    <ol type="a">
+        
+        <!-- a) Quais os passos básicos? -->
+        <li>
+            <ol>
+                <li>Selecione um vértice não colorido e pinte-o com uma das \( n \) cores disponíveis (neste caso, \( n = d + 1 \))
+                <ul>
+                    <li>Para cada um dos vizinhos, pinte-os com uma cor distinta dentre as \( n - 1 \) cores restantes.</li>
+                </ul>
+                </li>
+
+                <li>Selecione um vérice que tenha vizinhos não pintados
+                    <ul>
+                        <li>Desconsidere as cores utilizadas nesse vértice (\( a \)) e nos possíveis vizinhos que já estão coloridos (\( b \)) \( n = (n - a + b) \)</li>
+                        <li>Repita o procedimento \( 1 \) até que todos os vértices estejam coloridos</li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+
+        <!-- b) Qual a medida de progresso? Qual é o tipo do algoritmo (mais da saída, mais da entrada, estreitamento do espaço de busca ou trabalho realizado)? -->
+        <li>
+            <p>O algoritmo é mais de saída.</p>
+            <p>Uma vez que eu pinto um vértice, eu construo uma solução parcial correta.</p>
+        </li>
+
+        <!-- c) Qual o invariante do loop?-->
+        <li>
+            <p>A Invariante é que todos os vizinhos daquele vértice estão preenchidos até então. A construção permanece correta a cada iteração.</p>
+        </li>
+
+        <!-- d) Quais os passos principais (código do loop)? -->
+        <li>
+            <p>Colorir cada vértice do grafo que apresente a relação de conectividade com outro vértice que não possua cor ainda.</p>
+        </li>
+
+        <!-- e) Argumente que toda iteração realiza progresso. -->
+        <li>
+            <p>A cada itereção, pelo menos um vértice é colorido. Se não houverem vértices não coloridos, as iterações acabaram.</p>
+        </li>
+
+        <!-- f) Argumente que o invariante do loop é mantido após cada iteração. -->
+        <li>
+            <p>A invariante do loop é pelo menos um vértice ser colorido.</p>
+        </li>
+
+        <!-- g) Como estabelecemos o invariante do loop na primeira iteração? -->
+        <li>
+            <p>O caso base da existência de um grafo é existir um vértice. Então o primero vértice é colorido.Se houverem vizinhos desse vértice, as iterações seguem de acordo como o descrito, caso contrário, a solução já foi encontrada.</p>
+        </li>
+
+        <!-- h) Qual a condição de saída do loop?-->
+        <li>
+            <p>Quando não existir mais vértices não coloridos.</p>
+        </li>
+
+        <!-- i) Mostre como garantimos que a pós-condição é satisfeitas? -->
+        <li>
+            <p>A pós-condição é satisfeita quando os vértices estão coloridos e seu vizinhos possuem cores distintas.</p>
+        </li>
+
+        <!-- j) Qual o tempo de execução em notação  -->
+        <li>
+            <p>Esse problema pode ser expresso como uma busca em largura, onde cada vértice é visitado uma única vez, então pode-se sugerir a complexidade \( \Theta (|V| + |E|) \) onde \( |V| \) é o número de vértices e \( |E| \), o número de arestas.</p>
+        </li>
+    </ol>
+    
+    <h5>Resolução - Questão 2</h5>
+    <ol type="a">
+        <!--
+        a) Qual a medida de progresso? Qual é o tipo do algoritmo (mais da saída, mais da entrada, estreitamento do espaço de busca ou trabalho realizado)? -->
+        <li>
+            <p>O algoritmo é de estreitamento do espaço de busca.</p>
+            <p>Quando ocorre o deslocamento do índice do início ou do íncice do fim, a soma atual se aproxima mais do resultado esperado.</p>
+        </li>
+
+        <!--
+        b) Qual o invariante do loop? -->
+        <li>
+            <p>A invariante é baseada na garantia que a iteração atual possui um resultado parcial próximo do valor proposto pelo algoritmo.</p>
+        </li>
+
+        <!--
+        c) Argumente que toda iteração realiza progresso. -->
+        <li>
+            <p>O progresso é descrito a seguir:</p>
+            <ul>
+                <li>A cada iteração, o valor proposto é comparado à soma dos elementos sinalizados pelos íncides e início e fim</li>
+                <ul>
+                    <li>Se a soma for maior, ocorrerá uma aproximação por valores maiores, ou seja, uma atualização do íncide fim para um valor decrescido de 1.</li>
+                    <li>Se a soma for menor, uma aproximação por valores menores, nesse caso, uma atualização do índice do início para um valor acrescido de 1.</li>
+                    <li>Se a soma é igual ao valor proposto pelo algoritmo, chega-se ao progresso máximo.</li>
+                    <li>Se não houver a equidade entre a soma e o valor proposto, não haverá também iterações possíveis.</li>
+                    <li>Em todo caso, sempre haverá uma solução parcial melhor que a anterior</li>
+                </ul>
+            </ul>
+        </li>
+
+        <!--
+        d) Argumente que o invariante do loop é mantido após cada iteração. -->
+        <li>
+            <p>Como a invariante é uma soma próxima do valor proposto e a cada iteração essa soma fica mais próxima, Sempre haverá a manutenção desse invariante.</p>
+        </li>
+
+        <!--
+        e) Como estabelecemos o invariante do loop na primeira iteração? -->
+        <li>
+            <p>Pode ser mantido com a soma inicial do menor e o maior valor na lista</p>
+            <ul>
+                <li>Se a soma for igual ao valor proposto, está finalizado com o resultado correto.</li>
+                <li>Caso contrário, seguem as iterações e as movimentações dos íncides de início e fim.</li>
+            </ul>
+        </li>
+
+        <!--
+        f) Qual a condição de saída do loop? -->
+        <li>
+            <p>Encontrar a equidade entre a soma e o valor proposto ou os íncides não puderem mais ser atualizados.</p>
+        </li>
+
+        <!--
+        g) Mostre como garantimos que a pós-condição é satisfeitas? -->
+        <li>
+            <p>A pós-condição é satisfeita quando todos os índices são verificados ou quando o valor proposto é encontrado na soma.</p>
+        </li>
+
+        <!--
+        h) Qual o tempo de execução em notação Θ? -->
+        <li>
+            Como se trata de apenas uma verificação de elementos numa lista, o tempo de execução é da ordem \( \Theta(n) \), onde \( n \) é o tamanho da lista.
+        </li>
+
+    </ol>
+    <h5>Resolução - Questão 3</h5>
+    <ol type="a">
+        
+        <!-- a) Qual a medida de progresso? Qual é o tipo do algoritmo (mais da saída, mais da entrada, estreitamento do espaço de busca ou trabalho realizado)? -->
+        <li>
+            <p>A medida do progresso </p>
+            <p>O tipo de algoritmo é de <i>estreitamento do espaço de busca</i>, a cada iteração sobre o valor mínino de cada coluna, é possível encontrar a coluna onde a solução se encontra.</p>
+        </li>
+
+        <!-- b) Qual o invariante do loop? -->
+        <li>
+            <p>A Invariante é que a cada elemento verificado, o valor atual fica cada vez mais próximo do valor buscado.</p>
+        </li>
+
+        <!-- c) Quais os passos principais (código do loop)? -->
+        <li>
+            <p>Busca com redução de espaço de busca das colunas;</p>
+            <p>Busca com redução de espaço de busca das linhas;</p>
+            <code>
+                <pre>
+                    col_index = -1
+
+                    # se a chave é menor que 
+                    # o menor elemento da matriz
+                    # retorne falso
+                    if(key < M[0][0]):
+                        return False
+                
+                    # busca coluna
+                    for i in range(len(M[0])):
+                        # encontra coluna 
+                        if(key < M[0][i]):
+                            # captura coluna anterior onde
+                            # possivelmente esta a solucao
+                            col_index = i - 1
+                
+                    # busca linha
+                    # para cada elemento da linha
+                    for j in range(len(M)):
+                        # verifique a existendia de um 
+                        # elemento da linha igual a chave
+                        if(key == M[j][col_index]):
+                            # se existe, retorne verdadeiro
+                            return True
+                    
+                    return False
+                </pre>
+            </code>
+        </li>
+
+        <!-- d) Argumente que toda iteração realiza progresso. -->
+        <li>
+            <p>A primeira iteração tem o propósito de encontrar a posição da coluna onde estão as primeiras ocorrências dos menores valores da matriz que são maiores ou igual ao valor da chave. </p>
+
+            <p>Sabendo a posição da coluna em que possivelmente o valor da chave se encontra, o demais progressos são descritos na segunda iteração.</p>
+
+            <p>A segunda iteração, por sua vez, compara cada um elemento da coluna selecionada com a chave. Se o valor for igual, retorne verdadeiro, se todas as opções verificadas não obedecem a condição, retorne falso.</p>
+        </li>
+
+        <!-- e) Argumente que o invariante do loop é mantido após cada iteração. -->
+        <li>
+            <p>O invariante é mantido pois a cada iteração, os valores menores que a chave são deixados para trás.</p>
+        </li>
+        
+        <!-- f) Como estabelecemos o invariante do loop na primeira iteração? -->
+        <li>
+            <p>Verificamos se o primeiro elemento da matriz <code>M[0][0]</code> é menor que a chave, daí então, se a condição é satisfeita, há a progressão no estreitamento do espaço de busca.</p>
+        </li>
+
+        <!-- g) Qual a condição de saída do loop? -->
+        <li>
+            <p>Quando a chave é menor que o menor elemento da matriz, nem inicia o primero loop.</p>
+            <p>A condição de saída do primeiro loop é quando o primeiro menor valor encontrado numa coluna é maior que a chave.</p>
+            <p>A condição de saída do segundo loop é quando a chave é encontrada ou quando nenhum elemento da coluna selecionada é igual ao valor da chave.</p>
+        </li>
+
+        <!--h) Mostre como garantimos que a pós-condição é satisfeitas? -->
+        <li>
+            <p>A pós-condição é satisfeita, pois retorna um valor que exprime a existência da chave na matriz.</p>
+        </li>
+
+    </ol>
+    
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <script id="__bs_script__">//<![CDATA[
+      document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.12'><\/script>".replace("HOST", location.hostname));
+      //]]>
+      </script>
+
+
+    </body>
+</html>
+
+
