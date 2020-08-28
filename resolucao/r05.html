@@ -52,6 +52,29 @@
         <!-- d) Quais os passos principais (código do loop)? -->
         <li>
             <p>Colorir cada vértice do grafo que apresente a relação de conectividade com outro vértice que não possua cor ainda.</p>
+
+            <code>PSEUDO-CÓDIGO</code>
+            <pre>
+                colorir_cor_disponivel(vertice):
+                # captura todos os vizinhos de vertice
+                # verifica suas cores e descarta-as
+                # colore vertice com alguma cor disponível
+
+
+                fila = [vertice_inicial]
+                colorido[vertice_inicial] = COR_DISPONIVEL
+
+                while fila:
+                    # remove o primeiro da fila
+                    vertice_atual = fila.pop(0)    
+
+                    # pega todos os vizinhos desse vertice
+                    # verifica se ele ja foi colorido
+                    for i in grafo[vertice_atual]: 
+                        if colorido[i] == False: 
+                            fila.append(i)
+                            colorir_cor_disponivel(colorido[i])
+            </pre>
         </li>
 
         <!-- e) Argumente que toda iteração realiza progresso. -->
@@ -81,7 +104,7 @@
 
         <!-- j) Qual o tempo de execução em notação  -->
         <li>
-            <p>Esse problema pode ser expresso como uma busca em largura, onde cada vértice é visitado uma única vez, então pode-se sugerir a complexidade \( \Theta (|V| + |E|) \) onde \( |V| \) é o número de vértices e \( |E| \), o número de arestas.</p>
+            <p>Esse problema pode ser expresso como uma busca em largura, onde cada vértice é visitado uma única vez, então pode-se sugerir a complexidade \( \Theta (|V| \cdot (|V| + |E|)) \) onde \( |V| \) é o número de vértices e \( |E| \), o número de arestas.</p>
         </li>
     </ol>
     
