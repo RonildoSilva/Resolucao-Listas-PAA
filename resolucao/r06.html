@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Tipos abstratos de dados</h4>
+    
+    <h5>Resolução - Questão 1</h5>
+
+    <ol type="a">
+        <!-- a) Pseudocódigo, deixando claro as operações dos tipos abstratos de dados utilizados. -->
+        <p>A seguir, um pseudocódigo / código python e as descrições das operações e definições dos TADs.</p>
+        <li>
+        <pre>
+        # produtos como um dicionario / hash tables
+        # onde a chave é o nome do produto
+        # e o valor, o preco do produto
+        # com (m) produtos
+        produtos = {
+            "pão": 2.39, "leite": 5.29,
+            "sabonete": 1.09, "sabão em pó": 9.99
+        }
+        
+        # lista de compras representada por 
+        # uma lista de items de tamanho (n)
+        lista_compras = ["leite", "sabonete", "sabonete"]
+        
+        soma = 0
+        # laco de repeticao da ordem 
+        # do tamanho da lista Θ(n)
+        for item in lista_compras:
+            # para cada iteracao sobre a lista, 
+            # adicione a variavel soma, o preco do 
+            # produto obtido pela consulta no 
+            # hash de tamanho (m)
+            soma = soma + produtos.get(item)
+        
+        # retorne a soma
+        return soma            
+        </pre>            
+        </li>
+
+        <!-- b) Justifique a complexidade de tempo Θ(n+m).-->
+        <li>
+            <ul>
+            <li>Para provar a complexidade, basta atentar para as complexidades de acesso que cada um dos TAD possuem:</li>
+            <li>O hash, possui complexidade \( \Theta(1) \) de acesso à um valor dada uma determinada chave da tabela hash de tamanho \( m \) </li>
+            <li>A operação acima citada, é executada \( n \) vezes, onde \( n \) é o tamanho da lista associada ao algoritmo.</li>
+            </ul>
+        </li>
+
+        <!-- c) Qual seria a complexidade se os produtos fossem armazenados em listas?-->
+        <li>
+            <p>A complexidade quando os produtos são armazenados em listas seria de \( \Theta(n \cdot m) \)</p>
+            <p>Para cada elemento da lista de compras, uma verificação de complexidade \( \Theta(m) \) é realizada em busca de uma chave, daí, a captura do valor atribuído aquele elemento.</p>
+        </li>
+    </ol>
+    
+    <h5>Resolução - Questão 2</h5>
+    <ol type="a">
+        <!-- a) Pseudocódigo e a complexidade de tempo de cada linha do algoritmo. Note que a complexidade total deve ser Θ(nlogn). -->
+        <li>
+        <pre>
+            
+        </pre>            
+        </li>
+
+        <!-- b) Qual a medida de progresso? Argumente que progresso é feito em toda iteração. -->
+        <li></li>
+
+        <!-- c) Qual é o invariante do loop? Argumente que o invariante do loop é suficiente para calcular a mediana do prefixo L[1..i] em cada iteração i.
+        -->
+        <li></li>
+
+        <!-- d) Argumente que o código do loop mantém o invariante.-->
+        <li></li>
+
+        <!-- e) Argumente que o invariante do loop é satisfeito na 1a iteração. -->
+        <li></li>
+    </ol>
+
+
+    <h5>Resolução - Questão 3</h5>
+
+    <ol type="a">
+        <p>A seguir, um pseudocódigo / código python e as descrições das operações e definições dos TADs.</p>
+        <li>
+        <pre>
+        # bancos como conjuntos unitarios
+        bancoA = {1} bancoB = {2} bancoC = {3}
+
+        # lista de operacoes
+        operacoes = [
+        ('C', bancoA, bancoB), ('F', bancoA, bancoB), ('C', bancoA, bancoB),
+        ('F', bancoA, bancoC),('C', bancoA, bancoC)
+        ]
+
+        # laco de repeticao da ordem 
+        # do tamanho da lista Θ(n)                
+        for op in operacoes:
+            # apenas uma das opcoes e executada
+            # serão ao todo, n execucoes
+            if(op[0] == 'C'):
+                if(op[1] == op[2]):
+                    print('S')
+                else:
+                    print('N')
+            else:
+                # atualizacao (uniao) de ambos os conjuntos
+                # note que o tamanho maximo de cada
+                # conjunto e m ... pois existem exatamente
+                # m identificadores
+                op[1].update(op[2])
+                op[2].update(op[1])
+        </pre>
+        </li>
+
+        <li>
+            <p>
+            Inicialmente, todos os bancos são descritos como conjuntos unitários e formam uma lista de operacoes de tamanho \( n \)</p>
+            <p>
+                Para cada item da lista verifica-se qual tipo de operação e os códigos.
+            </p>
+                <ul>
+                    <li>Se a operação for comparativa, apenas imprima</li>
+                    <li>Caso contrário, se a operação for de fusão, atualize o os conjuntos</li>
+                </ul>
+            <p>
+                Cada passo desse, custa \( \Theta(1) \).
+            </p>
+            <p>Na atualização (uniao) de ambos os conjuntos pode gerar um conjunto de tamanho no máximo \( m \), pois existem exatamente \( m \) identificadores.</p>
+
+            <p>Assim, a complexidade desse algoritmo pertence à \( \Theta(n+m) \)</p>
+        </li>
+    </ol>
+
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <script id="__bs_script__">//<![CDATA[
+      document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.12'><\/script>".replace("HOST", location.hostname));
+      //]]>
+      </script>
+
+
+    </body>
+</html>
+
+
