@@ -11,11 +11,80 @@
         
     </head>
     <body>
+
     <!---------------------------------------------------------------------------------------------------------------------->
 
     <h4>Utilização de algoritmos de determinação de caminhos mínimos na descoberta de prazos mínimos para a conclusão de processos</h4>
+    
+    <h5>Descrição do Problema</h5>
 
-		<h5>Avaliação Teórica</h5>
+    <p>A busca pela otimizaçao de processos é uma tarefa recente,  uma vez que uma quantidade de empresas privadas ou serviços públicos almejam fazer mais em menos tempo, ou executar tarefas da melhor forma possível [Kalenkova et al. 2017]. Um processo pode ser representado como um diagrama, uma lista de tarefas, um autômato, uma rede de petri ([Erofeev and Wimmel 2017])  ou  grafo direcional. Esse último, alvo deste trabalho. Pode-se representar um processo como um grafo (segundo as definiçoes de grafos em [Arshad et al. 2016]) da seguinte forma:</p>
+
+    <ul>
+        <li>Um conjunto de tarefas \( T \) corresponde a um conjunto de vértices;</li>
+        <li>Um conjunto de prazos \( P \) (tempo maximo que se pode aguardar para uma tarefa \( u \)
+            seguir para uma tarefa \( v \) ). \( P \) é facilmente entendíveel como um conjunto de arestas
+            ponderadas positivamente.</li>
+    </ul>
+
+    <p>
+        O problema de encontrar caminhos mínimos entre todos os pares de vértices em um grafo surge na elaboração de uma tabela de distâncias entre todos os pares de tarefas de um processo. Tem-se um grafo orientado ponderado \( G = (T, P) \) com uma função peso \( w : T \rightarrow {\rm I\!R^{+}} \) que mapeia arestas para pesos de valores reais positivos de tempo. Deseja-se encontrar, para todos os pares de vértices \( u, v \in T \), um tempo mínimo (de peso mínimo) dentro dos limites máximos de espera de \( u \) a \( v \), onde o tempo máximo de espera é a soma dos pesos das arestas que o constituem. Normalmente, queremos a saída em forma tabular: a entrada na linha de \( u \) e na coluna de \( v \) deve ser o peso de um tempo de espera mínimo dentre o máximo possível de espera de \( u \) a \( v \) [Cormen et al. 2009].
+    </p>
+
+    <p>Este trabalho propõe resolver essa problemática com os seguintes algoritmos:</p>
+
+    <h5>Algoritmo I: Floyd-Warshall</h5>
+
+    <p> O algoritmo de programação dinâmica de <i>Floyd-Warshall</i> recebe como entrada uma matriz quadrada de adjacência de ordem \( |V| \) (onde \( |V| \) corresponde à quantidade de vértices do grafo) tal qual cada elemento possui um valor correspondente ao peso da aresta, o que equivale à distância entre dois vértices adjacentes. O valor pode também ser \( \infty \) quando não há uma conexão entre dois vértices. Essa matriz representa um grafo \( (V,E) \) orientado e valorado.
+
+    O valor de um caminho entre dois vértices é a soma dos valores de todas as arestas ao longo desse caminho. O conjunto das arestas \( E \) do grafo podem ter valores negativos, mas o grafo não pode conter nenhum ciclo de valor negativo, porém não é o caso dos valores de espera num processo.
+
+    O algoritmo calcula, para cada par de vértices, o menor de todos os caminhos entre os vértices. Por exemplo, o caminho de menor custo. Sua ordem de complexidade é \( \Theta |V|^{3} \) e possui uma característica vantajosa em relação ao algoritmo de Dijkstra por ter uma implementação mais simples [Skiena 1998] <sup><a href="https://pt.wikipedia.org/wiki/Algoritmo_de_Floyd-Warshall">Algoritmo de Floyd-Warshall</a></sup>.
+
+    A saída do algoritmo de <i>Floyd-Warshall</i> é uma matriz com as distâncias mais curtas entre cada par de vértices como mostra o Algoritmo I.
+    </p>
+
+    <img src="https://i.ibb.co/GkdXBQT/floyd-warshall.png" alt="floyd-warshall" border="0">
+    
+    <h5>Algoritomo II: n-Djikstra</h5>
+
+    <p>
+        Uma alternativa para solucionar o problema de modo assintoticamente melhor que \( n^3 \), é realizar \( n \) chamadas para o algoritmo de <i>Dijkstra</i>, onde \( n \) ́e a quantidade de vértices do grafo [Skiena 1998].
+    </p>
+
+    <h6>Algoritmo de Dijkstra</h6>
+    <p>
+        O Algoritmo de <i>Dijkstra</i>, computa o caminho m ́ınimo de um vértice fixo (fonte) \( v \in V \) do grafo direcionado \( G(V, E) \), para todos os demais vértices de \( G \) [Szwarcfiter 2018],
+        tendo em vista que as arestas do grafo são ponderadas por pesos não negativos.
+    </p>
+    <p>
+        E bastante utilizado como sub-rotinas de outros algoritmos [Abu-Ryash and Tamimi 2015]. Segundo[Arshad et al. 2016], a complexidade de tempo de para o algoritmo simples de <i>Dijkstra</i> com  \(n \) nós pertence a \( \Theta(n^{2}) \),  porém,  como  o  nosso  intuito ́e  utilizar  o  <i>Dijkstra</i>  para  todos  os vértices, a complexidade se torna \( \Theta(n^{2} + |V|) \).</p>
+    <p>
+        O algoritmo de  <i>Dijkstra</i> mantém um conjunto \( S \) de vértices cujos pesos finais de caminhos mínimos que partem da fontes já foram determinados. O algoritmo seleciona repetidamente o vértice \( u \in V - S \) que tem a mínima estimativa do caminho mínimo, adiciona \( u \) a \( S \) e relaxa todas as arestas que saem de \( u \). É comum que se use uma fila de prioridades mínimas \( Q \) de vértices cujas chaves são os valores de \( distancia \) [Cormen et al. 2009].
+    </p>
+
+    <p></p>
+
+    <img src="https://i.ibb.co/314szXL/n-Dijkstra.png" alt="n-Dijkstra" border="0">
+
+
+	<h5>Avaliação Teórica</h5>
+	<p>
+	A avaliação teórica usa métodos formais para inferir propriedades do algoritmo, como sua complexidade computacional (Papadimitriou, 	1994), e também emprega as ferramentas da teoria de aprendizagem computacional para avaliar propriedades teóricas de aprendizagem.
+</p>
+	
+	<p>Este trabalho manipula incicialmente os tempos de execução de cada algoritmo descrito nas Seções anteriores para entradas de tamanho diversos, nesse caso, para grafos com \( n \) vértices, tal que \( n = {5 ... 500} \).</p>
+
+	<p>Para cada valor \( i \in n \), computa-se o tempo de execução de cada um dos algoritmos para um valor \( i \) de vértices. Os algoritmos foram implementador na linguagem <i>Python</i> e execeutados na ferramenta <a href="http://colab.research.google.com/"><i>http://colab.research.google.com/</i></a>. Os dados de tempo de execução foram armazenados num <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"><i>DataFrame</i></a> e persistido em um arquivo tabular <i>.csv</i> </p>
+	<p>Exemplo de tabela</p>
+	<p><img/></p>
+	<i>Inserir tabela de resultados de 50 em 50 </i>
+	
+	<h6>Resultados Parciais</h6>
+	<p>A Figura a seguir mostra o comportamento da função que relaciona o tamanho da entrada (número de vértices) e o tempo de execução do algoritmo de caminhos mínimos.</p>
+	<p>
+		<img src="https://i.ibb.co/Dk51DQ8/fld-dkt-1-500.png" alt="fld-dkt-1-500" border="0">
+	</p>
 
     <h5>Referências</h5>
     <ol>
@@ -29,6 +98,8 @@
         <li>Erofeev, E. and Wimmel, H. (2017). Reachability graphs of two-transition petri nets. In ATAED@ Petri Nets/ACSD, pages 39–54.</li>
     
         <li>Kalenkova, A., Ageev, A., Lomazova, I. A., and van der Aalst, W. M. (2017). Egovernment services: Comparing real and expected user behavior. In International Conference on Business Process Management, pages 484–496. Springer.</li>
+
+		<li>Papadimitriou, C. H. (1994). Computational complexity. Reading, MA: Addison-Wesley.</li>
         
         <li>Skiena, S. S. (1998). The algorithm design manual: Text, volume 1. Springer Science & Business Media.</li>
                 
