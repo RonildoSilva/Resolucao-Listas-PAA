@@ -30,13 +30,46 @@
         </li>
 
         <!-- b) Qual a medida de tamanho da instância? -->
-        <li></li>
+        <li>
+            <p>
+                A medida do tamanho da instância é o valor de \( n \) que é passado como parâmetro a cada chamada.
+            </p>
+        </li>
 
         <!-- c) Quais instâncias são passadas em cada chamada recursiva? Elas satisfazem as pré-condições? Elas são menores que a instância original? Caso ocorra algum problema, como resolver? -->
-        <li></li>
+        <li>
+            <p>
+                <ul>
+                    <li>
+                        <p>
+                            As instâncias passadas em cada chamada recursiva são subinstâncias da instância anterior. O algoritmo define que sejam duas chamadas para cada metade da instância anterior.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            As pré-condições são satisfeiras pois \( n \geq 0 \) e não temos \( b \) e \( n \)  nulos simultaneamente. Caso contrário, é tratada nos casos base.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Sempre são menores que a instância original. Caso contrário é pertencente à um caso base.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Não ocorrem problemas. A solução é fiel ao modelo indutivo.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </li>
 
         <!-- d) Como as subsoluções são combinadas para fornecer a solução para a instância original?-->
-        <li></li>
+        <li>
+            <p>
+                São combinadas pelo produto obtido pelas duas metades a cada chamada.
+            </p>
+        </li>
 
         <!-- e) Como determinamos que a instância é suficientemente pequena (caso base)? Como construímos a solução para estas instâncias? -->
         <li>
@@ -46,7 +79,6 @@
         <!-- f) Forneça o pseudocódigo. -->
         <li>
         <p></p>
-
 <pre>
     <code>
 from math import ceil, floor
@@ -82,55 +114,153 @@ def potencia(b, n):
 <pre>
     <code>
 def potencia(b, n): 
-
-if (n == 0): return 1
-elif (int(n % 2) == 0): 
-    return (potencia(b, int(n / 2)) * potencia(b, int(n / 2))) 
-else: 
-    return (b * potencia(b, int(n / 2)) * potencia(b, int(n / 2)))
+    if (n == 0): return 1
+    elif (int(n % 2) == 0): 
+        return (potencia(b, int(n / 2)) * potencia(b, int(n / 2))) 
+    else: 
+        return (b * potencia(b, int(n / 2)) * potencia(b, int(n / 2)))
     </code>
 </pre>
                 </li>
 
                 <li>
-                    <p>Não muda. Se considerarmos o fato de que apenas uma chamada é feita por ver para as duas metades, uma vez que ou é chamada para um \( n \) divisível por \( 2 \) e outra, caso contrário, a quantidade de chamadas será a mesma. Como é manipulado para partições de mesmo tamanho, nada irá mudar na complexidade. </p>
+                    <p>
+                        Muda para \( \Theta(\log n)\). Se considerarmos o fato de que apenas uma chamada é feita por vez para as duas metades, uma vez que ou é chamada para um \( n \) divisível por \( 2 \) e outra, caso contrário. A quantidade de chamadas será a de ordem logarítmica.
+                    </p>
                 </li>
             </ul>
         </li>
 
         <!-- i) Como n é um inteiro recebido como entrada, a forma correta de expressar a complexidade é em função do número de bits de n. Como fica então a complexidade do força bruta e do algoritmo do item (h) em função deste número de bits? -->
-        <li></li>
+        <li>
+            <ul>
+                <li>O algoritmo de força bruta permanece \( \Theta (n) \), pois uma das condições estabelecidas no enunciado é que \( n \) é uma potência de \( 2 \). </li>
+                <li>O algoritmo logarítimico é \( \Theta (\log n) \), visto que o valor da base do logarítimo é desconsiderada na notação \( \Theta \) </li>
+            </ul>
+        </li>
     </ol>
     
     <h5>Resolução - Questão 2</h5>
 
     <ol type="a">
-        <!-- a) -->
-        <li></li>
+        <!-- a) Especifique as pré-condições e as pós-condições.-->
+        <li>
+            <ul>
+                <li>
+                    Pré-condições: matriz binária com \( m \) linhas e \( m \) colunas que representa a relação simétrica de \( conhece[i,j] \) e uma pilha que organizará as verificações se um determinado indivíduo conhece outro.
+                </li>
+                <li>
+                    Pós-condições: uma pilha com uma quantidade de elementos \( \geq 1 \).
+                </li>
+            </ul>
+        </li>
 
-        <!-- b) -->
-        <li></li>
+        <!-- b) Qual a medida de tamanho da instância? -->
+        <li>
+            <p>
+                São os elementos desempilhados a cada iteração.
+            </p>
+        </li>
 
-        <!-- c) -->
-        <li></li>
+        <!-- c) Quais instâncias são passadas em cada chamada recursiva? Elas satisfazem as pré-condições? Elas são menores que a instância original? Caso ocorra algum problema, como resolver? -->
+        <li>
+            <p>
+                <ul>
+                    <li>A instância passada é uma pilha de tamanho \( \geq 1 \)</li>
+                    <li>Satisfazem, pois não fere a quantidade de elementos da pilha, e não altera a matriz.</li>
+                    <li>Sim. A cada chamada, a quantidade de elementos da pilha se torna menor.</li>
+                    <li>A ocorrência de um problema é contornado com o caso base. De retorno da pilha de um único elemento.</li>
+                </ul>
+            </p>
+        </li> 
 
-        <!-- d) -->
-        <li></li>
+        <!-- d) Como as subsoluções são combinadas para fornecer a solução para a instância original? -->
+        <li>
+            <p>
+                As subsoluções são dadas no processo de "exclusão" dos indivíduos não-candidatos à celebridade. No fim, haverá apenas um candidato.
+            </p>
+        </li>
 
-        <!-- e) -->
-        <li></li>
+        <!-- e) Como determinamos que a instância é suficientemente pequena (caso base)? Como construímos a solução para estas instâncias? -->
+        <li>
+            <p>
+                Quando existe apenas um  elemento na pilha.
+            </p>
+        </li>
 
-        <!-- f) -->
-        <li></li>
+        <!-- f) Forneça o pseudocódigo. -->
+        <li>
+<pre>
+    <code>
 
-        <!-- g) -->
-        <li></li>
+# definicao de variavel global
+pilha = stack()
+for individuo in individuos:
+    pilha.push(individuo)
 
-        <!-- h) -->
-        <li></li>
+# definicao de funcao auxiliar
+def conhece(a, b):
+    return M[a][b]
 
-        <!-- i) -->
-        <li></li>
+# funcao principal
+def celebridade(pilha):        
+
+    individuo_a = pilha.pop()
+    individuo_b = pilha.pop()
+
+    # vefirica se o segundo elemento capturado
+    # é valido. Se não for, existe apena um na pilha
+    # retorne o candidato restante
+    if(! individuo_b):
+        return individuo_a
+
+    if(conhece(individuo_a, individuo_b) and ! conhece(individuo_b, individuo_a)):
+        pilha.push(individuo_a)
+    else:
+        return celebridade(pilha)
+    </code>
+</pre>
+        </li>
+
+        <!-- g) Qual a complexidade de tempo do algoritmo recursivo em função de n? Qual a complexidade de tempo total do procedimento adicional em função de n? -->
+        <li>
+            <ul>
+                <li>O tempo do algoritmo recursivo é da ordem de \( \Theta(n) \)</li>
+                <li>O tempo toral do procedimento adicional é da ordem de \( \Theta(n + m ) \)</li>
+            </ul>
+        </li>
+
+        <!-- h) Como removemos apenas um elemento em cada chamada recursiva, é recomendado transformá-lo em um algoritmo iterativo. Forneça o pseudocódigo da versão iterativa. Junte com os passos do procedimento adicional para formar um único algoritmo. -->
+        <li>
+            <pre>
+                <code>
+# definicao de variavel global
+lista_individuos = list()
+for individuo in individuos:
+    lista_individuos.append(individuo)
+
+# definicao de funcao auxiliar
+def conhece(a, b):
+    return M[a][b]
+
+# funcao principal
+def celebridade_iterativa():
+    i = 1; candidato = lista_individuos[0]
+
+    while (i < len(lista_individuos))
+        if ! conhece(candidato, lista_individuos[i]) and conhece(lista_individuos[i], candidato):
+            candidato = lista_individuos[i]
+        i += 1
+
+    return candidato
+                </code>
+            </pre>
+        </li>
+
+        <!-- i) Qual a complexidade da versão iterativa em função de n? -->
+        <li>
+            <p>A versão iterativa possui complexidade \( \Theta(2n) \rightarrow \Theta(n) \)</p>
+        </li>
 
     </ol>
 
