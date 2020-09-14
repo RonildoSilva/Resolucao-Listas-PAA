@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Projeto e corretude de algoritmos recursivos</h4>
+    
+    <h5>Resolução - Questão 1</h5>
+
+    <ol type="a">
+        <!-- a) Especifique as pré-condições e as pós-condições. -->
+        <li>
+            <ul>
+                <li>
+                    Pré-condições: dois inteiros b e n, onde \( n \geq 0 \) e não temos \( b \) e \( n \)  nulos simultaneamente.
+                </li>
+                <li>Pós-condições: o retorno de cada chamada deve ser igual a \( b^{n} \)</li>
+            </ul>
+        </li>
+
+        <!-- b) Qual a medida de tamanho da instância? -->
+        <li></li>
+
+        <!-- c) Quais instâncias são passadas em cada chamada recursiva? Elas satisfazem as pré-condições? Elas são menores que a instância original? Caso ocorra algum problema, como resolver? -->
+        <li></li>
+
+        <!-- d) Como as subsoluções são combinadas para fornecer a solução para a instância original?-->
+        <li></li>
+
+        <!-- e) Como determinamos que a instância é suficientemente pequena (caso base)? Como construímos a solução para estas instâncias? -->
+        <li>
+            <p>O caso base pode ser determinado quando \( n \leq 1 \), assim, a função retorna \( b \) ou \( 1 \) com valores de \( n \) iguais a \( 1 \) ou \( 0 \) respectivamente. </p>
+        </li>
+
+        <!-- f) Forneça o pseudocódigo. -->
+        <li>
+        <p></p>
+
+<pre>
+    <code>
+from math import ceil, floor
+
+def potencia(b, n): 
+
+    if (n == 0): return 1
+    if (n == 1): return b
+    else: 
+        return (potencia(b, ceil(n / 2)) * potencia(b, floor(n / 2)))
+    </code>
+</pre>
+        </li>
+
+        <!-- g) Qual a complexidade de tempo em função de n? Para simplificar considere apenas o caso em que n é potência de 2 -->
+        <li>
+            <ul>
+                <li>\( T(n) = T(\frac{n}{2}) + T(\frac{n}{2}) + c \)</li>
+                <li>\( T(n) = T(\frac{n}{4}) + T(\frac{n}{4}) + c + T(\frac{n}{4}) + T(\frac{n}{4}) + c + c  \)</li>
+                <li>\( ... \)</li>
+                <li>\( T(n) = 2^i \cdot T(\frac{n}{2^i}) + (2^{i-1} \cdot c) + c \)</li>
+                <li>\( \sum_{i = 1}^{\log_2 n} 2^{i - 1} \cdot c \)</li>
+                <li>\(  n \cdot c \)</li>
+                <li>\(  \Theta(n) \)</li>
+            </ul>
+        </li>
+
+        <!-- h) Como ficaria o pseudocódigo e a complexidade de tempo em função de n? Esta nova complexidade é menor que a do algoritmo força bruta? -->
+        <li>
+            <ul>
+                <li>
+                    <p>Pseudocódigo:</p>
+<pre>
+    <code>
+def potencia(b, n): 
+
+if (n == 0): return 1
+elif (int(n % 2) == 0): 
+    return (potencia(b, int(n / 2)) * potencia(b, int(n / 2))) 
+else: 
+    return (b * potencia(b, int(n / 2)) * potencia(b, int(n / 2)))
+    </code>
+</pre>
+                </li>
+
+                <li>
+                    <p>Não muda. Se considerarmos o fato de que apenas uma chamada é feita por ver para as duas metades, uma vez que ou é chamada para um \( n \) divisível por \( 2 \) e outra, caso contrário, a quantidade de chamadas será a mesma. Como é manipulado para partições de mesmo tamanho, nada irá mudar na complexidade. </p>
+                </li>
+            </ul>
+        </li>
+
+        <!-- i) Como n é um inteiro recebido como entrada, a forma correta de expressar a complexidade é em função do número de bits de n. Como fica então a complexidade do força bruta e do algoritmo do item (h) em função deste número de bits? -->
+        <li></li>
+    </ol>
+    
+    <h5>Resolução - Questão 2</h5>
+
+    <ol type="a">
+        <!-- a) -->
+        <li></li>
+
+        <!-- b) -->
+        <li></li>
+
+        <!-- c) -->
+        <li></li>
+
+        <!-- d) -->
+        <li></li>
+
+        <!-- e) -->
+        <li></li>
+
+        <!-- f) -->
+        <li></li>
+
+        <!-- g) -->
+        <li></li>
+
+        <!-- h) -->
+        <li></li>
+
+        <!-- i) -->
+        <li></li>
+
+    </ol>
+
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <script id="__bs_script__">//<![CDATA[
+      document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.12'><\/script>".replace("HOST", location.hostname));
+      //]]>
+      </script>
+
+
+    </body>
+</html>
+
+
