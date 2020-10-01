@@ -1,0 +1,204 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+	<pre>
+	- Afirma que o Floyd-Warshall é Theta(|V|^3), mas não justifica.
+	- Afirma que o algoritmo de Dijkstra é Theta(n^2), mas não justifica.
+    - Vimos na aula que o Dijkstra implementado com heap binária tem complexidade Theta((n + m) log n).
+    - Se utilizar heap de Fibonacci na análise, precisa justificar.
+	- Diz que o Dijkstra executado n vezes tem complexidade Theta(n^2 + |V|).
+    - O n não é igual ao |V|? Você diz no início da seção que n é quantidade de vértices.
+    - n vezes Theta(n^2) não deveria ser Theta(n^3)?
+	</pre>
+
+    <h4>Utilização de algoritmos de determinação de caminhos mínimos na descoberta de prazos mínimos para a conclusão de processos</h4>
+    
+    <h5>Descrição do Problema</h5>
+
+    <p>A busca pela otimizaçao de processos é uma tarefa recente,  uma vez que uma quantidade de empresas privadas ou serviços públicos almejam fazer mais em menos tempo, ou executar tarefas da melhor forma possível [Kalenkova et al. 2017]. Um processo pode ser representado como um diagrama, uma lista de tarefas, um autômato, uma rede de petri ([Erofeev and Wimmel 2017])  ou  grafo direcional. Esse último, alvo deste trabalho. Pode-se representar um processo como um grafo (segundo as definiçoes de grafos em [Arshad et al. 2016]) da seguinte forma:</p>
+
+    <ul>
+        <li>Um conjunto de tarefas \( T \) corresponde a um conjunto de vértices;</li>
+        <li>Um conjunto de prazos \( P \) (tempo maximo que se pode aguardar para uma tarefa \( u \)
+            seguir para uma tarefa \( v \) ). \( P \) é facilmente entendíveel como um conjunto de arestas
+            ponderadas positivamente.</li>
+    </ul>
+
+    <p>
+        O problema de encontrar caminhos mínimos entre todos os pares de vértices em um grafo surge na elaboração de uma tabela de distâncias entre todos os pares de tarefas de um processo. Tem-se um grafo orientado ponderado \( G = (T, P) \) com uma função peso \( w : T \rightarrow {\rm I\!R^{+}} \) que mapeia arestas para pesos de valores reais positivos de tempo. Deseja-se encontrar, para todos os pares de vértices \( u, v \in T \), um tempo mínimo (de peso mínimo) dentro dos limites máximos de espera de \( u \) a \( v \), onde o tempo máximo de espera é a soma dos pesos das arestas que o constituem. Normalmente, queremos a saída em forma tabular: a entrada na linha de \( u \) e na coluna de \( v \) deve ser o peso de um tempo de espera mínimo dentre o máximo possível de espera de \( u \) a \( v \) [Cormen et al. 2009].
+    </p>
+
+    <p>Este trabalho propõe resolver essa problemática com os seguintes algoritmos:</p>
+
+    <h5>Algoritmo I: Floyd-Warshall</h5>
+
+    <p>
+        O algoritmo de programação dinâmica de <i>Floyd-Warshall</i> recebe como entrada uma matriz quadrada de adjacência de ordem \( |V| \) (onde \( |V| \) corresponde à quantidade de vértices do grafo) tal qual cada elemento possui um valor correspondente ao peso da aresta, o que equivale à distância entre dois vértices adjacentes. O valor pode também ser \( \infty \) quando não há uma conexão entre dois vértices. Essa matriz representa um grafo \( (V,E) \) orientado e valorado.
+
+        O valor de um caminho entre dois vértices é a soma dos valores de todas as arestas ao longo desse caminho. O conjunto das arestas \( E \) do grafo podem ter valores negativos, mas o grafo não pode conter nenhum ciclo de valor negativo, porém não é o caso dos valores de espera num processo.
+
+        O algoritmo calcula, para cada par de vértices, o menor de todos os caminhos entre os vértices. Por exemplo, o caminho de menor custo. Sua ordem de complexidade é \( \Theta |V|^{3} \) e possui uma característica vantajosa em relação ao algoritmo de Dijkstra por ter uma implementação mais simples [Skiena 1998] <sup><a href="https://pt.wikipedia.org/wiki/Algoritmo_de_Floyd-Warshall">Algoritmo de Floyd-Warshall</a></sup>.
+
+        A saída do algoritmo de <i>Floyd-Warshall</i> é uma matriz com as distâncias mais curtas entre cada par de vértices como mostra o Algoritmo I.
+    </p>
+
+    <img src="https://i.ibb.co/GkdXBQT/floyd-warshall.png" alt="floyd-warshall" border="0">
+    
+    <h5>Algoritomo II: n-Djikstra</h5>
+
+    <p>
+        Uma alternativa para solucionar o problema de modo assintoticamente melhor que \( n^3 \), é realizar \( n \) chamadas para o algoritmo de <i>Dijkstra</i>, onde \( n \) ́e a quantidade de vértices do grafo [Skiena 1998].
+    </p>
+
+    <h6>Algoritmo de Dijkstra</h6>
+    <p>
+        O Algoritmo de <i>Dijkstra</i>, computa o caminho m ́ınimo de um vértice fixo (fonte) \( v \in V \) do grafo direcionado \( G(V, E) \), para todos os demais vértices de \( G \) [Szwarcfiter 2018],
+        tendo em vista que as arestas do grafo são ponderadas por pesos não negativos.
+    </p>
+    <p>
+        E bastante utilizado como sub-rotinas de outros algoritmos [Abu-Ryash and Tamimi 2015]. Segundo[Arshad et al. 2016], a complexidade de tempo de para o algoritmo simples de <i>Dijkstra</i> com  \(n \) nós pertence a \( \Theta(n^{2}) \),  porém,  como  o  nosso  intuito ́e  utilizar  o  <i>Dijkstra</i>  para  todos  os vértices, a complexidade se torna \( \Theta(n^{2} + |V|) \).</p>
+    <p>
+        O algoritmo de  <i>Dijkstra</i> mantém um conjunto \( S \) de vértices cujos pesos finais de caminhos mínimos que partem da fontes já foram determinados. O algoritmo seleciona repetidamente o vértice \( u \in V - S \) que tem a mínima estimativa do caminho mínimo, adiciona \( u \) a \( S \) e relaxa todas as arestas que saem de \( u \). É comum que se use uma fila de prioridades mínimas \( Q \) de vértices cujas chaves são os valores de \( distancia \) [Cormen et al. 2009].
+    </p>
+
+    <p></p>
+
+    <img src="https://i.ibb.co/314szXL/n-Dijkstra.png" alt="n-Dijkstra" border="0">
+
+
+	<h5>Avaliação Teórica</h5>
+	<p>
+        A avaliação teórica usa métodos formais para inferir propriedades do algoritmo, como sua complexidade computacional, e também emprega as ferramentas da teoria de aprendizagem computacional para avaliar propriedades teóricas de aprendizagem [Papadimitriou]
+    </p>
+	
+	<p>Este trabalho manipula inicialmente os tempos de execução de cada algoritmo descrito nas Seções anteriores para entradas de tamanho diversos. O conjunto de entradas, nesse caso, para grafos com \( n \) vértices, tais que as entradas se caracterizam da seguinte forma: \( n = {5, 10, 15, ... , 995} \).</p>
+
+    <h6>Procedimentos</h6>
+
+    <p>
+        Para cada valor \( n \in N \), computa-se o tempo de execução de cada um dos algoritmos para um valor \( n \) de vértices. Os algoritmos foram implementador na linguagem <i>Python</i> e executados na ferramenta <a target="_blank" href="http://colab.research.google.com/"><i>Google Colab</i></a>. O projeto do experimento se encontra disponível num repositório do <a target="_blank" href="https://github.com/RonildoSilva/PAA---PCOMP/blob/master/Submiss%C3%A3o_2_%5BFloyd_x_Dijkstra%5D_(Avalia%C3%A7%C3%A3o_Te%C3%B3rica).ipynb"><i>GitHub</i></a>.
+    </p>
+
+	<p>
+        Os dados de tempo de execução foram armazenados num <a target="_blank" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"><i>DataFrame</i></a> e persistido em um arquivo tabular <i>.csv</i>. A Figura seguinte mostra algumas das entradas e saídas do experimento:
+    </p>
+
+    <p><img src="https://i.ibb.co/122TYzn/data-sample.png" alt="data-sample" border="0"></p>
+	
+    <h6>Elaboração de modelo matemático que associa o tamanho da entrada e o tempo de execução</h6>
+    
+    <p>
+        A análise de pior caso nos fornece o crescimento de uma função baseado no tamanho da entrada, mas pode acontecer de algumas tarefas serem demasiadamente demoradas, ou seja, o programa pode demorar muito para produzir uma saída e o que nos interessa no momento, é saber quando o programa irá encerrar, então, nesses casos é melhor fazer uma avaliação experimental do algoritmo.
+    </p>
+
+    <p>
+        Para isso, utilizamos os tempos de execuções do algoritmo para diferentes instâncias, que são mostrados na Figura anterior, assim, podemos criar um gráfico com os tempos do algoritmo de acordo com as entradas e, a partir desse gráfico, gerar um modelo matemático correspondente aos pontos do gráfico. Isso irá nos permitir fazer previsões de tempo para outras entradas.
+    </p>
+
+	<p>
+        A Figura a seguir mostra o comportamento da função que relaciona o tamanho da entrada (número de vértices) e o tempo de execução do algoritmo de caminhos mínimos.</p>
+	<p>
+        <img src="https://i.ibb.co/Db69RwH/fld-dkt-t-n-1-1000.png" alt="fld-dkt-t-n-1-1000" border="0">
+    </p>
+    
+    <p>
+        Existem diferentes maneiras de encontrar o modelo matemático correspondente, uma das mais comuns é tentar transformar a curva de crescimento em uma reta e aplicar modelos de regressão linear.
+
+        Para encontrar o modelo, vamos assumir que o tempo está descrito na forma básica, ou seja:
+    </p>
+
+    <p>\( T(n) = c \cdot b^{an} \cdot n^{d} \cdot log^{e}{n} \)</p>
+    <p>
+        Onde \(a, b, c, d \) e \( e \) são constantes e \( n \) é o tamanho da entrada. Se aplicarmos \( log \) dos dois lados da equação temos: \( log(T(n)) = log(c) + a \cdot n \cdot log(b) + d \cdot log(n) + e \cdot log \cdot log(n) \)
+    </p>
+
+    <p>
+        A hipótese neste trabalho é de que os algoritmos apresentados são polinomiais, por tanto, consideramos apenas os termos correspondentes à \( log(T(n)) = log(n) \).
+    </p>
+
+    <p>
+        Assim, voltamos para o gráfico e utilizamos técnicas de regressão linear para determinar a reta que irá passar pelos pontos do gráfico, nos dando também a inclinação da reta utilizando da hipótese como mostra a Figura seguinte.
+    </p>
+    
+    <p>
+        <img src="https://i.ibb.co/4gTqK99/fld-dkt-slope-1-1000.png" alt="fld-dkt-slope-1-1000" border="0">
+    </p>
+    
+    <p>
+        De acordo com os gráficos apresentados na Figura anterior, podemos perceber que as complexidades das funções se limitam à \( \Theta(n^3) \), o que comprova a hipótese de que os algoritmos apresentados possuem complexidade \( \Theta (n^3) \) e \( \Theta (n^2) \cdot |V| \) para os algoritmos <i>Floyd-Warshall</i> e  <i>n-Djikstra</i>, respectivamente.
+
+        Partindo dessas informações, é possível estimar o tempo de execução para uma determinada entrada que não é conhecida ou não foi mencionada neste trabalho. A Figura seguinte mostra os últimos valores computados no experimento.
+    </p>
+
+    <p>
+        <img src="https://i.ibb.co/sKfN3Kj/tail.png" alt="tail" border="0">
+    </p>
+
+    <p>
+        Uma estimativa de tempo de execução é realizada para uma entrada de tamanho \( 1000 \).
+    </p>
+
+    <ul>
+        <i>Floyd-Warshall</i>
+        <li>\( T(n) = c \cdot n^{3} \)</li>
+        <li>\( 1500.22 = c \cdot 995^{3} \)</li>
+        <li>\( c = 1.5229 \cdot 10^{-6} \)</li>
+        <li>\( T(n) = 1.5229 \cdot 10^{-6} \cdot n^{3} \)</li>
+        <li>\( T(1000) = 1.5229 \cdot 10^{-6} \cdot 1000^{3} \)</li>
+        <li>\( T(1000) = 1522.95 \)</li>
+        <li>\(  \)</li>
+    </ul>
+    
+    <ul>
+        <i>n-Djikstra</i>
+        <li>\( T(n) = c \cdot n^{3} \)</li>
+        <li>\( 911.77 = c \cdot 995^{3} \)</li>
+        <li>\( c = 9.2558 \cdot 10^{-7} \)</li>
+        <li>\( T(n) = 9.2558 \cdot 10^{-7} \cdot n^{3} \)</li>
+        <li>\( T(1000) = 9.2558 \cdot 10^{-7} \cdot 1000^{3} \)</li>
+        <li>\( T(1000) = 925.58 \)</li>
+    </ul>
+
+    <p>
+        Os dois algoritmos possuem complexidades similares , resolvem o mesmo problema, porém as suas implementações são bem distintas, <i>Floyd-Warshall</i> é mais simples e possui um tempo de execução maior que contrasta com a implementação de <i>n-Djikstra</i> e seu tempo de execução que se torna consideravelmente menor a medida que o tamanho da entrada aumenta.
+    </p>
+
+    
+    <h5>Referências</h5>
+    <ol>
+        <li>Abu-Ryash, H. and Tamimi, A. A. (2015). Comparison studies for different shortest path
+        algorithms. International Journal of Computers & Technology, 14(8):5979–5986.</li>
+
+        <li>Arshad, R., Shahid, M. A., Khan, D., and Shah, S. H. H. (2016). Study and analysis of shortest path algorithms. In Proceedings of 2nd International Multi-Disciplinary Conference, volume 19, page 20.</li>
+
+        <li>Cormen, T. H., Leiserson, C. E., Rivest, R. L., and Stein, C. (2009). Introduction to algorithms. MIT press.</li>
+    
+        <li>Erofeev, E. and Wimmel, H. (2017). Reachability graphs of two-transition petri nets. In ATAED@ Petri Nets/ACSD, pages 39–54.</li>
+    
+        <li>Kalenkova, A., Ageev, A., Lomazova, I. A., and van der Aalst, W. M. (2017). Egovernment services: Comparing real and expected user behavior. In International Conference on Business Process Management, pages 484–496. Springer.</li>
+
+		<li>Papadimitriou, C. H. (1994). Computational complexity. Reading, MA: Addison-Wesley.</li>
+        
+        <li>Skiena, S. S. (1998). The algorithm design manual: Text, volume 1. Springer Science & Business Media.</li>
+                
+        <li>Szwarcfiter, Jayme Luiz. Teoria computacional de grafos: Os Algoritmos. Elsevier Brasil, 2018.</li>
+        
+    </ol>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+    </body>
+</html>
+

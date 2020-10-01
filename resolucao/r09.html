@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <!--
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <meta http-equiv="refresh" content="15">
+        -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/polyfill.js"></script>
+        <script id="MathJax-script" async src="js/tex-mml-chtml.js"></script>
+        
+    </head>
+    <body>
+
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <h4>Busca em profundidade e suas aplicações</h4>
+    
+    <h5>Resolução - Questão 1</h5>
+<pre>
+<code>
+algoritmo BP_tamanho_componente(G, s, componente_atual):
+<pré-cond>: G é um grafo não direcionado, e s um de seus nós
+            Assume que encontrado[s] == False.
+            componente_atual é o id do componente explorado na busca.
+<pré-cond>: Preenche as estruturas encontrado, pi, tamanho_subarvore e 
+            componente para cada nó encontrado na BP iniciando em s.
+----------------------------------------------            
+| CÓDIGO A
+----------------------------------------------
+# conjunto de componentes
+hash_componentes = {}
+----------------------------------------------
+encontrado[s] = True
+P = pilha contendo apenas (s,0)
+enquanto P não é vazia:
+    (u,i) = P.pop()
+    se u tem o (i+1)-ésimo vizinho v
+        P.push((u,i+1))
+        se encontrado[v] == False
+            ----------------------------------------------
+            | CÓDIGO B
+            ----------------------------------------------
+            # econtra o caminho a partir de u
+            busca_profundidade(u) 
+            ----------------------------------------------
+            encontrado[v] = True
+            pi[v] = u
+            P.push((v,0))
+    senão // ou seja, u finalizou
+        ----------------------------------------------
+        | CÓDIGO C
+        ----------------------------------------------
+        se v pertence a P e (u,v) não são consecutivos em P então
+            # visite a vizinhança de u
+            visitar (u,v)
+            # retirar u da pilha e insere numa estrutura hash
+            hash_componentes.push(P.pop())
+
+        # adiciona o restante dos nos que formam o componente
+        hash_componentes.push(encontrado[v])
+        
+        #desmarcar todos os vértices
+        encontrado[v] == False
+
+        # definir uma nova pilha P, com a fonte s -> componente_atual
+        P = (s, componente_atual) 
+
+        retorne hash_componentes
+        ----------------------------------------------
+
+algoritmo tamanho_componentes(G)
+   para cada nó u de G
+      encontrado[u] = False
+      pi[u] = nulo
+      ----------------------------------------------
+      | CÓDIGO D
+      ----------------------------------------------
+      #  número de nós na subárvore T(u)
+      tamanho_subarvore = []
+      # conjunto de nos
+      componente =  {}
+      ----------------------------------------------
+
+   tamanho_componente = dicionário vazio
+   componente_atual = 1
+   para cada nó u de G
+      se encontrado[u] == False
+         contador = 0
+         componente = BP_tamanho_componente(G, u, componente_atual)
+         ----------------------------------------------
+         | CÓDIGO E
+         ----------------------------------------------
+         # contagem de componentes conectados no dicionario
+         contador+=1
+         tamanho_componente.update(u, componente)
+
+         # quantidade de nos herdeiros de u
+         # subarvore = n - 1 nós
+         tamanho_subarvore[u] = tamanho_componente.get(u).lenght - 1
+         ----------------------------------------------
+         componente_atual += 1    
+</code>    
+</pre>        
+    
+    <ol type="a">
+        <!-- tamanho_subarvore[u] -->
+        <li>
+            O <code>tamanho_subarvore</code> pode ser uma lista onde o índice é o nó do grafo, e o valor é o tamanho da sub árvore. O tamanho da sub árvore é igual a quantidade de componentes - 1, uma vez que o componente inclui também o nó pai da sub árvore. O acesso a esses valores de <code>tamanho_subarvore</code> é constante.
+        </li>
+        
+        <!-- componente[u] -->
+        <li>
+            <code>componente</code> é um conjunto de nós que é composta pelos descendentes do nó u. Poderá haver intersecções não nulas entre dois ou mais conjuntos, o que torna fácil a computação de componentes fortemente conexos em tempo linear.
+        </li>
+
+        <!-- tamanho_componente[C] -->
+        <li>
+            <code>tamanho_componente</code> é uma estrutura hash , onde as chaves são os próprios nós e os valores, os valores, são conjuntos de nós. A verificação de tamanho, pertinência e acesso aos dados componentes são operações de hash constantes.
+        </li>
+    </ol>
+
+    <h5>Resolução - Questão 2</h5>    
+<pre>
+<code>
+algoritmo BP_num_desconecta_componente(G, no_inicial):
+<pré-cond>: G é um grafo não direcionado, e no_inicial um de seus nós.
+            Assume que encontrado[no_inicial] == False.
+<pré-cond>: Preenche as estruturas encontrado, pi, s, s_ancestral_mais_antigo e 
+            num_desconecta para cada nó encontrado na BP iniciando em no_inicial.
+
+encontrado[no_inicial] = True
+tempo = 0; s[no_inicial] = tempo
+P = pilha contendo apenas (no_inicial,0)
+enquanto P não é vazia:
+    (u,i) = P.pop()
+    se u tem o (i+1)-ésimo vizinho v
+        P.push((u,i+1))
+        se encontrado[v] == False 
+            // aresta de árvore
+            encontrado[v] = True; pi[v] = u
+            tempo = tempo + 1; s[v] = tempo
+            P.push((v,0))
+        senão, se u é ancestral de v (s[v] < s[u]) e (u,v) não é aresta de árvore (pi[u] != v) 
+            // aresta de retorno
+            ----------------------------------------------
+            | CÓDIGO A
+            ----------------------------------------------
+            # existe (v,u), onde u é ancestral direto de de v 
+            # não precisa empilhar v
+            # apenas atualiza o tempo de v
+            tempo = tempo + 1
+            s[v] = tempo
+            ----------------------------------------------
+    senão // u finalizou
+        ----------------------------------------------
+        | CÓDIGO B
+        ----------------------------------------------
+        # se u finaliza, não temos mais nós descendentes ou filhos
+        # apenas atualize o tempo de u que é o ultimo a ser visitado
+        # na pilha
+        tempo = tempo + 1
+        s[u] = tempo
+        ----------------------------------------------
+retorne num_desconecta[no_inicial]
+
+algoritmo total_desconecta(G)
+    para cada nó u de G
+        encontrado[u] = False; pi[u] = nulo
+        ----------------------------------------------
+        | CÓDIGO C
+        ----------------------------------------------
+        # define o "relogio" que configura o tempo em que cada 
+        # vertice é visitado
+
+        # primeira descoberta (x / _)
+        relogio_descoberta_inicial[u] = relogio
+
+        # ultima descoberta (_ / y)
+        relogio_descoberta_recente[u] = relogio
+        relogio += 1
+
+        # descobre qual dos nós u e v foi visitado menos recentemente
+        # se for o visitado menos recente, significa que esse nó é ancestral 
+        relogio_descoberta_recente[u] = 
+            min(relogio_descoberta_recente[u], relogio_descoberta_recente[v]) 
+        
+        s_ancestral_mais_antigo[v] = u
+        ----------------------------------------------
+
+    total = 0
+    para cada nó u de G
+        se encontrado[u] == False
+            total += BP_num_desconecta_componente(u)
+            num_desconecta[u] = total
+    retorne total    
+</code>    
+</pre>
+
+<ol type="a">
+    <!-- s_ancestral_mais_antigo[u] -->
+    <!-- ancestral , usar relogio -->
+    <li>
+        Para <code>s_ancestral_mais_antigo</code>, usa-se uma lista onde o índice é o vértice e o valor é o pai P do vértice na iteração entre vizinhos de P. o relógio de P é atualizado de forma que evidencie qual o menor valor do relogio que P possa ter para que ele se encontre um filho F , tal que (P,F) for removido, o grafo se torna desconexo.
+    </li>
+
+    <!-- num_desconecta[u] -->
+    <li>
+        <code>num_desconecta</code> também é uma lista onde o índice é o vértice e o valor é a quantidade de (u,v) que podem ser desconexas. A quantidade (u,v) que de possíveis desconexões é dada pelo <code>BP_num_desconecta_componente(u)</code>, uma vez que é descoberto um (P,F) que torna G desconexo com o relógio de valor mínimo.
+    </li>
+</ol>
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    </body>
+</html>
+
+
