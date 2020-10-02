@@ -14,16 +14,6 @@
 
     <!---------------------------------------------------------------------------------------------------------------------->
 
-	<pre>
-	- Afirma que o Floyd-Warshall é Theta(|V|^3), mas não justifica.
-	- Afirma que o algoritmo de Dijkstra é Theta(n^2), mas não justifica.
-    - Vimos na aula que o Dijkstra implementado com heap binária tem complexidade Theta((n + m) log n).
-    - Se utilizar heap de Fibonacci na análise, precisa justificar.
-	- Diz que o Dijkstra executado n vezes tem complexidade Theta(n^2 + |V|).
-    - O n não é igual ao |V|? Você diz no início da seção que n é quantidade de vértices.
-    - n vezes Theta(n^2) não deveria ser Theta(n^3)?
-	</pre>
-
     <h4>Utilização de algoritmos de determinação de caminhos mínimos na descoberta de prazos mínimos para a conclusão de processos</h4>
     
     <h5>Descrição do Problema</h5>
@@ -55,8 +45,26 @@
         A saída do algoritmo de <i>Floyd-Warshall</i> é uma matriz com as distâncias mais curtas entre cada par de vértices como mostra o Algoritmo I.
     </p>
 
-    <img src="https://i.ibb.co/GkdXBQT/floyd-warshall.png" alt="floyd-warshall" border="0">
+    <img src="https://i.ibb.co/dQn9SK2/floyd.png" alt="floyd" border="0">
     
+    <h6>Análise Teórica de complexidade do algoritmo I: Floyd-Warshall</h6>
+
+    <p>A listagem a seguir, descreve de modo minucioso qual a complexidade de cada linha do algoritmo descrito nesta Seção.</p>
+
+    <ul>
+        <li><strong>Linha 2: </strong> \(|V|\) atribuições, onde cada uma delas é um elemento que compõe a diagonal da matriz de distâncias . \( \Theta (|V|) \);</li>
+        <li><strong>Linha 5: </strong> Nesta linha, são executadas no máximo \( \frac{|V| \cdot (|V|-1)}{2}\) vezes, considerando o pior caso, esse valor é o número máximo de arestas possíveis num grafo. \( \Theta (\frac{|V| \cdot (|V|-1)}{2}) \);</li>
+        <li><strong>Linha 11: </strong> Esta linha é a única operação que pode ser executada nos laços aninhados (linhas 7, 8 e 9). Considera-se o pior caso de execução, então suponhamos que a linha 10 sempre será executada sem custo adicional. A complexidade de cada laço é da ordem \( \Theta (|V|) \). O número de execuções dessa linha, é então. \( \Theta (|V|^{3}) \);</li>
+    </ul>
+
+    <p>
+        Somando os valores de complexidade, temos:
+        $$
+        \Theta (|V|^{3}) + \Theta (\frac{|V| \cdot (|V|-1)}{2}) + \Theta (|V|)
+        $$
+    </p>
+    <p>Logo, a complexidade do algoritmo Floyd-Warshall pertence à \( \Theta (|V|^{3}) \).</p>
+
     <h5>Algoritomo II: n-Djikstra</h5>
 
     <p>
@@ -69,22 +77,53 @@
         tendo em vista que as arestas do grafo são ponderadas por pesos não negativos.
     </p>
     <p>
-        E bastante utilizado como sub-rotinas de outros algoritmos [Abu-Ryash and Tamimi 2015]. Segundo[Arshad et al. 2016], a complexidade de tempo de para o algoritmo simples de <i>Dijkstra</i> com  \(n \) nós pertence a \( \Theta(n^{2}) \),  porém,  como  o  nosso  intuito ́e  utilizar  o  <i>Dijkstra</i>  para  todos  os vértices, a complexidade se torna \( \Theta(n^{2} + |V|) \).</p>
+        E bastante utilizado como sub-rotinas de outros algoritmos [Abu-Ryash and Tamimi 2015]. Segundo[Arshad et al. 2016], a complexidade de tempo de para o algoritmo simples de <i>Dijkstra</i> com  \( |V| \) vértices pertence a \( \Theta(|V|^{2}) \),  porém,  como  o  nosso  intuito ́e  utilizar  o  <i>Dijkstra</i>  para  todos  os vértices, a complexidade se torna \( \Theta(|V|^{2} \cdot |V|) = \Theta(|V|^{3} \).</p>
     <p>
         O algoritmo de  <i>Dijkstra</i> mantém um conjunto \( S \) de vértices cujos pesos finais de caminhos mínimos que partem da fontes já foram determinados. O algoritmo seleciona repetidamente o vértice \( u \in V - S \) que tem a mínima estimativa do caminho mínimo, adiciona \( u \) a \( S \) e relaxa todas as arestas que saem de \( u \). É comum que se use uma fila de prioridades mínimas \( Q \) de vértices cujas chaves são os valores de \( distancia \) [Cormen et al. 2009].
     </p>
 
     <p></p>
 
-    <img src="https://i.ibb.co/314szXL/n-Dijkstra.png" alt="n-Dijkstra" border="0">
+    <img src="https://i.ibb.co/8XzT5tD/n-dijkstra.png" alt="n-dijkstra" border="0">
 
+    <h6>Análise Teórica de complexidade do algoritmo II: n-Dijkstra</h6>
 
-	<h5>Avaliação Teórica</h5>
+    <p>A listagem a seguir, descreve de modo minucioso qual a complexidade de cada linha do algoritmo descrito nesta Seção.</p>
+
+    <ul>
+        <li><strong>Linha 1: </strong>  Iteração sobre cada um dos vértices do grafo \( G \). \( \Theta(|V|) \);</li>
+        <li><strong>Linha 2: </strong> Atribuição para o valor do predecessor (pai) do vértice \( v \). \( \Theta(1) \);</li>
+        <li><strong>Linha 3: </strong>  Adição do vértice $v$ na fila \( Q \). \( \Theta(1) \);</li>
+        <li><strong>Linha 4: </strong>  Atribuição para o valor da distância inicial do vértice \( v \). \( \Theta(1) \);</li>
+        <li><strong>Linha 5: </strong>  Iteração sobre os itens que compõe a fila \( Q \);</li>
+        <li><strong>Linha 6: </strong>  Atribuição para o valor do vértice \( u \). \( \Theta(|V|) \);</li>
+        <li><strong>Linha 7: </strong> Remoção do vértice $u$ da fila \( Q \). \( \Theta(|V|) \);</li>
+        <li><strong>Linha 9: </strong> Atualização da distância mínima entre os vértices \( u \) e \( v \). O máximo de vizinhos que $v$ pode ter é igual ao pior caso, assim, \( \Theta(|V|-1) \);</li>
+        <li><strong>Linha 11: </strong>  Atualização da distância mínima para o vértice \( v \). \( \Theta(1) \);</li>
+        <li><strong>Linha 12: </strong>  Atualização do predecessor do vértice \( v \) \( \Theta(1) \);</li>
+        <li><strong>Linha 16: </strong>  Atribuição das distâncias de entre \( v \) e seus vizinhos a matriz de distância. \( \Theta(1) \);</li>
+    </ul>
+
+    <p>Somando os valores de complexidade, temos:</p>
+        $$
+        \Theta(|V|) \cdot
+        (\Theta(3) + \Theta(|V|)) \cdot
+        (\Theta(2) + \Theta(|V|) + \Theta(3)) + \Theta(1)
+        $$
+
+    <p>Logo, a complexidade do algoritmo n-Dijkstra pertence à \( \Theta (|V|^{3}) \).</p>
+
+    <h6>Avaliação Teórica</h6>
 	<p>
         A avaliação teórica usa métodos formais para inferir propriedades do algoritmo, como sua complexidade computacional, e também emprega as ferramentas da teoria de aprendizagem computacional para avaliar propriedades teóricas de aprendizagem [Papadimitriou]
     </p>
+    <p>
+        Neste procedimento, vimos que ambos os algoritmos pertencem ao mesmo conjunto, \( \Theta(|V|^3)\), o que leva a 'ignorar' as funções de menor grau e as constantes envolvidas. O procedimento seguinte irá executar ambos os algoritmos sobre entradas iguais, objetivando a análise de tempo de execução.
+    </p>
+
+	<h5>Avaliação Empírica</h5>
 	
-	<p>Este trabalho manipula inicialmente os tempos de execução de cada algoritmo descrito nas Seções anteriores para entradas de tamanho diversos. O conjunto de entradas, nesse caso, para grafos com \( n \) vértices, tais que as entradas se caracterizam da seguinte forma: \( n = {5, 10, 15, ... , 995} \).</p>
+	<p>Este trabalho manipula inicialmente os tempos de execução de cada algoritmo descrito nas Seções anteriores para entradas de tamanho diversos. O conjunto de entradas, nesse caso, para grafos com \( n \) vértices, tais que as entradas se caracterizam da seguinte forma: \( n = {5, 10, 15, ... , 495} \).</p>
 
     <h6>Procedimentos</h6>
 
@@ -96,7 +135,9 @@
         Os dados de tempo de execução foram armazenados num <a target="_blank" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html"><i>DataFrame</i></a> e persistido em um arquivo tabular <i>.csv</i>. A Figura seguinte mostra algumas das entradas e saídas do experimento:
     </p>
 
-    <p><img src="https://i.ibb.co/122TYzn/data-sample.png" alt="data-sample" border="0"></p>
+    <p>
+        <img src="https://i.ibb.co/x2LrxwS/sample.png" alt="sample" border="0">
+    </p>
 	
     <h6>Elaboração de modelo matemático que associa o tamanho da entrada e o tempo de execução</h6>
     
@@ -111,7 +152,7 @@
 	<p>
         A Figura a seguir mostra o comportamento da função que relaciona o tamanho da entrada (número de vértices) e o tempo de execução do algoritmo de caminhos mínimos.</p>
 	<p>
-        <img src="https://i.ibb.co/Db69RwH/fld-dkt-t-n-1-1000.png" alt="fld-dkt-t-n-1-1000" border="0">
+        <img src="https://i.ibb.co/MhwDSv6/fld-dkt-t-n-1-100.png" alt="fld-dkt-t-n-1-100" border="0">
     </p>
     
     <p>
@@ -134,46 +175,82 @@
     </p>
     
     <p>
-        <img src="https://i.ibb.co/4gTqK99/fld-dkt-slope-1-1000.png" alt="fld-dkt-slope-1-1000" border="0">
+        <img src="https://i.ibb.co/PcfSQvL/fld-dkt-slope-1-100.png" alt="fld-dkt-slope-1-100" border="0">
     </p>
     
     <p>
-        De acordo com os gráficos apresentados na Figura anterior, podemos perceber que as complexidades das funções se limitam à \( \Theta(n^3) \), o que comprova a hipótese de que os algoritmos apresentados possuem complexidade \( \Theta (n^3) \) e \( \Theta (n^2) \cdot |V| \) para os algoritmos <i>Floyd-Warshall</i> e  <i>n-Djikstra</i>, respectivamente.
+        De acordo com os gráficos apresentados na Figura anterior, podemos perceber que as complexidades das funções se limitam à \( \Theta(n^3) \), o que comprova a hipótese de que ambos os algoritmos apresentados possuem complexidade \( \Theta (n^3) \).
 
         Partindo dessas informações, é possível estimar o tempo de execução para uma determinada entrada que não é conhecida ou não foi mencionada neste trabalho. A Figura seguinte mostra os últimos valores computados no experimento.
     </p>
 
     <p>
-        <img src="https://i.ibb.co/sKfN3Kj/tail.png" alt="tail" border="0">
+        <img src="https://i.ibb.co/ZNyv1Jy/tail.png" alt="tail" border="0">
     </p>
 
     <p>
-        Uma estimativa de tempo de execução é realizada para uma entrada de tamanho \( 1000 \).
+        Uma estimativa de tempo de execução é realizada para uma entrada de tamanho \( 500 \).
     </p>
 
     <ul>
         <i>Floyd-Warshall</i>
         <li>\( T(n) = c \cdot n^{3} \)</li>
-        <li>\( 1500.22 = c \cdot 995^{3} \)</li>
-        <li>\( c = 1.5229 \cdot 10^{-6} \)</li>
-        <li>\( T(n) = 1.5229 \cdot 10^{-6} \cdot n^{3} \)</li>
-        <li>\( T(1000) = 1.5229 \cdot 10^{-6} \cdot 1000^{3} \)</li>
-        <li>\( T(1000) = 1522.95 \)</li>
-        <li>\(  \)</li>
+        <li>\( 168.70 = c \cdot 495^{3} \)</li>
+        <li>\( c = 1.3909 \cdot 10^{-6} \)</li>
+        <li>\( T(n) = 1.3909 \cdot 10^{-6} \cdot n^{3} \)</li>
+        <li>\( T(500) = 1.3909 \cdot 10^{-6} \cdot 500^{3} \)</li>
+        <li>\( T(500) = 173.8639 \)</li>
     </ul>
     
     <ul>
         <i>n-Djikstra</i>
         <li>\( T(n) = c \cdot n^{3} \)</li>
-        <li>\( 911.77 = c \cdot 995^{3} \)</li>
-        <li>\( c = 9.2558 \cdot 10^{-7} \)</li>
-        <li>\( T(n) = 9.2558 \cdot 10^{-7} \cdot n^{3} \)</li>
-        <li>\( T(1000) = 9.2558 \cdot 10^{-7} \cdot 1000^{3} \)</li>
-        <li>\( T(1000) = 925.58 \)</li>
+        <li>\( 391.86 = c \cdot 495^{3} \)</li>
+        <li>\( c = 3.2308 \cdot 10^{-6} \)</li>
+        <li>\( T(n) = 3.2308 \cdot 10^{-6} \cdot n^{3} \)</li>
+        <li>\( T(500) = 3.2308 \cdot 10^{-6} \cdot 500^{3} \)</li>
+        <li>\( T(500) = 403.8548 \)</li>
     </ul>
 
+
+    <h5>Avaliação para \(T(n)\), \( n = 500 \)</h5>
     <p>
-        Os dois algoritmos possuem complexidades similares , resolvem o mesmo problema, porém as suas implementações são bem distintas, <i>Floyd-Warshall</i> é mais simples e possui um tempo de execução maior que contrasta com a implementação de <i>n-Djikstra</i> e seu tempo de execução que se torna consideravelmente menor a medida que o tamanho da entrada aumenta.
+        Para concluir a análise, basta executar ambos os algoritmos para o mesmo grafo de com 500 vértices.
+    </p>
+
+    <p>
+        O resultado obtido para cada um dos algoritmos é:
+    </p>
+
+    <table>
+        <thead>
+          <tr>
+            <th><strong>Algoritmo \( T(500) \)</strong></th>
+            <th><strong>Estimativa</strong></th>
+            <th><strong>Tempo de execução</strong></span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Floyd-Warshall</td>
+            <td>173.8639 s</td>
+            <td>183.4572 s</td>
+          </tr>
+          <tr>
+            <td>n-Djikstra</td>
+            <td>403.8548 s</td>
+            <td>404.0994 s</td>
+          </tr>
+        </tbody>
+        </table>
+
+    <h5>Conclusão</h5>
+    <p>
+        Os dois algoritmos possuem complexidades similares , resolvem o mesmo problema, porém as suas implementações são bem distintas, <i>Floyd-Warshall</i> é mais simples e possui um tempo de execução que cresce mais rápido a cada iteração. 
+
+        O algoritmo <i>n-Djikstra</i> tem seu tempo de execução consideravelmente maior devido à quantidade de fatores de grau 2 apresentados na avaliação teórica, porém, a cada iteração, o tempo de execução não cresce tanto, apresentado por um algoritmo mais sofisticado.
+
+        Então tem-se informações adicionais que ambos terão tempos de execução bem próximos quando a entrada for muito grande.
     </p>
 
     
