@@ -59,10 +59,16 @@
 
     <p>
         Somando os valores de complexidade, temos:
-        $$
-        \Theta (|V|^{3}) + \Theta (\frac{|V| \cdot (|V|-1)}{2}) + \Theta (|V|)
-        $$
     </p>
+
+    <ul>
+        <li>\( \Theta (|V|^{3}) + \Theta (\frac{|V| \cdot (|V|-1)}{2}) + \Theta (|V|) = \)</li>
+        <li>\( \Theta (|V|^{3}) + \Theta (\frac{|V|^{2} - |V|}{2}) + \Theta (|V|) = \)</li>
+        <li>\( \Theta (2 \cdot |V|^{3}) + \Theta (|V|^{2} - |V|) + \Theta (2 \cdot |V|)  = \)</li>
+        <li>\( \Theta (2 \cdot |V|^{3}) + \Theta (|V|^{2}) + \Theta (|V|) = \)</li>
+        <li>\( \Theta (2 \cdot |V|^{3} + |V|^{2} + |V|) \)</li>
+    </ul>
+
     <p>Logo, a complexidade do algoritmo Floyd-Warshall pertence à \( \Theta (|V|^{3}) \).</p>
 
     <h5>Algoritomo II: n-Djikstra</h5>
@@ -84,7 +90,7 @@
 
     <p></p>
 
-    <img src="https://i.ibb.co/8XzT5tD/n-dijkstra.png" alt="n-dijkstra" border="0">
+    <img src="https://i.ibb.co/mygbPHk/n-dijkstra.png" alt="n-dijkstra" border="0">
 
     <h6>Análise Teórica de complexidade do algoritmo II: n-Dijkstra</h6>
 
@@ -101,15 +107,19 @@
         <li><strong>Linha 9: </strong> Atualização da distância mínima entre os vértices \( u \) e \( v \). O máximo de vizinhos que $v$ pode ter é igual ao pior caso, assim, \( \Theta(|V|-1) \);</li>
         <li><strong>Linha 11: </strong>  Atualização da distância mínima para o vértice \( v \). \( \Theta(1) \);</li>
         <li><strong>Linha 12: </strong>  Atualização do predecessor do vértice \( v \) \( \Theta(1) \);</li>
-        <li><strong>Linha 16: </strong>  Atribuição das distâncias de entre \( v \) e seus vizinhos a matriz de distância. \( \Theta(1) \);</li>
+        <li><strong>Linha 14: </strong>  Atribuição de distância entre \( v \) e \( x \) ao vetor de distância de \( v \).  \( \Theta(1) \);</li>
+        <li><strong>Linha 17: </strong>  Atribuição das distâncias de entre \( v \) e seus vizinhos a matriz de distância. \( \Theta(1) \);</li>
     </ul>
 
-    <p>Somando os valores de complexidade, temos:</p>
-        $$
-        \Theta(|V|) \cdot
-        (\Theta(3) + \Theta(|V|)) \cdot
-        (\Theta(2) + \Theta(|V|) + \Theta(3)) + \Theta(1)
-        $$
+    <p>Somando os valores de complexidade, temos:<p>
+
+    <ul>
+        <li>\( \Theta(|V|) \cdot (\Theta(3) + \Theta(|V|)) \cdot (\Theta(2) + \Theta(|V|) + \Theta(3))) + \Theta(1)+ \Theta(1) = \)</li>
+        <li>\( \Theta(|V|) \cdot (\Theta(3) + \Theta(|V|)) \cdot (\Theta(|V|) + \Theta(5))) + \Theta(2) =  \)</li>
+        <li>\( \Theta(|V|) \cdot (\Theta(3 \cdot |V|) + \Theta(15) + \Theta(|V|^{2} + \Theta(5 \cdot |V|))) + \Theta(1) = \)</li>
+        <li>\( \Theta(|V|) \cdot (\Theta(|V|^{2}) + \Theta(8 \cdot |V|) + \Theta(15))  + \Theta(1) =  \)</li>
+        <li>\( \Theta(|V|^{3}) + \Theta(8 \cdot |V|^{2}) + \Theta(15 \cdot |V|)  + \Theta(1) \)</li>
+    </ul>
 
     <p>Logo, a complexidade do algoritmo n-Dijkstra pertence à \( \Theta (|V|^{3}) \).</p>
 
@@ -136,7 +146,7 @@
     </p>
 
     <p>
-        <img src="https://i.ibb.co/x2LrxwS/sample.png" alt="sample" border="0">
+        <img src="https://i.ibb.co/SVzDDC2/data-sample.png" alt="data-sample" border="0">
     </p>
 	
     <h6>Elaboração de modelo matemático que associa o tamanho da entrada e o tempo de execução</h6>
@@ -152,7 +162,7 @@
 	<p>
         A Figura a seguir mostra o comportamento da função que relaciona o tamanho da entrada (número de vértices) e o tempo de execução do algoritmo de caminhos mínimos.</p>
 	<p>
-        <img src="https://i.ibb.co/MhwDSv6/fld-dkt-t-n-1-100.png" alt="fld-dkt-t-n-1-100" border="0">
+        <img src="https://i.ibb.co/JKWxLKh/fld-dkt-t-n-1-100.png" alt="fld-dkt-t-n-1-100" border="0">
     </p>
     
     <p>
@@ -175,7 +185,7 @@
     </p>
     
     <p>
-        <img src="https://i.ibb.co/PcfSQvL/fld-dkt-slope-1-100.png" alt="fld-dkt-slope-1-100" border="0">
+        <img src="https://i.ibb.co/7kQKYg9/fld-dkt-slope-1-100.png" alt="fld-dkt-slope-1-100" border="0">
     </p>
     
     <p>
@@ -185,7 +195,7 @@
     </p>
 
     <p>
-        <img src="https://i.ibb.co/ZNyv1Jy/tail.png" alt="tail" border="0">
+        <img src="https://i.ibb.co/N6qXt41/tail.png" alt="tail" border="0">
     </p>
 
     <p>
@@ -195,21 +205,21 @@
     <ul>
         <i>Floyd-Warshall</i>
         <li>\( T(n) = c \cdot n^{3} \)</li>
-        <li>\( 168.70 = c \cdot 495^{3} \)</li>
-        <li>\( c = 1.3909 \cdot 10^{-6} \)</li>
-        <li>\( T(n) = 1.3909 \cdot 10^{-6} \cdot n^{3} \)</li>
-        <li>\( T(500) = 1.3909 \cdot 10^{-6} \cdot 500^{3} \)</li>
-        <li>\( T(500) = 173.8639 \)</li>
+        <li>\( 174.67 = c \cdot 495^{3} \)</li>
+        <li>\( c = 1.4401 \cdot 10^{-6} \)</li>
+        <li>\( T(n) = 1.4401 \cdot 10^{-6} \cdot n^{3} \)</li>
+        <li>\( T(500) = 1.4401 \cdot 10^{-6} \cdot 500^{3} \)</li>
+        <li>\( T(500) = 180.0166 \)</li>
     </ul>
     
     <ul>
         <i>n-Djikstra</i>
         <li>\( T(n) = c \cdot n^{3} \)</li>
-        <li>\( 391.86 = c \cdot 495^{3} \)</li>
-        <li>\( c = 3.2308 \cdot 10^{-6} \)</li>
-        <li>\( T(n) = 3.2308 \cdot 10^{-6} \cdot n^{3} \)</li>
-        <li>\( T(500) = 3.2308 \cdot 10^{-6} \cdot 500^{3} \)</li>
-        <li>\( T(500) = 403.8548 \)</li>
+        <li>\( 231.67 = c \cdot 495^{3} \)</li>
+        <li>\( c = 1.9100 \cdot 10^{-6} \)</li>
+        <li>\( T(n) = 1.9100 \cdot 10^{-6} \cdot n^{3} \)</li>
+        <li>\( T(500) = 1.9100 \cdot 10^{-6} \cdot 500^{3} \)</li>
+        <li>\( T(500) = 238.7614 \)</li>
     </ul>
 
 
@@ -225,7 +235,7 @@
     <table>
         <thead>
           <tr>
-            <th><strong>Algoritmo \( T(500) \)</strong></th>
+            <th><strong>Algoritmo T(500)</strong></th>
             <th><strong>Estimativa</strong></th>
             <th><strong>Tempo de execução</strong></span></th>
           </tr>
@@ -233,24 +243,24 @@
         <tbody>
           <tr>
             <td>Floyd-Warshall</td>
-            <td>173.8639 s</td>
-            <td>183.4572 s</td>
+            <td>180.0166 s</td>
+            <td>190.1251 s</td>
           </tr>
           <tr>
             <td>n-Djikstra</td>
-            <td>403.8548 s</td>
-            <td>404.0994 s</td>
+            <td>238.7614 s</td>
+            <td>241.2918 s</td>
           </tr>
         </tbody>
         </table>
 
     <h5>Conclusão</h5>
     <p>
-        Os dois algoritmos possuem complexidades similares , resolvem o mesmo problema, porém as suas implementações são bem distintas, <i>Floyd-Warshall</i> é mais simples e possui um tempo de execução que cresce mais rápido a cada iteração. 
+        Os dois algoritmos possuem complexidades similares , são algoritmos gulosos e resolvem o mesmo problema, porém as suas implementações são bem distintas, <i>Floyd-Warshall</i> é mais simples e possui um tempo de execução que cresce menos rápido a cada iteração. 
 
-        O algoritmo <i>n-Djikstra</i> tem seu tempo de execução consideravelmente maior devido à quantidade de fatores de grau 2 apresentados na avaliação teórica, porém, a cada iteração, o tempo de execução não cresce tanto, apresentado por um algoritmo mais sofisticado.
+        O algoritmo <i>n-Djikstra</i> tem seu tempo de execução consideravelmente maior devido à quantidade de fatores de grau 2 apresentados na avaliação teórica, apresentado por um algoritmo de implementação mais sofisticada.
 
-        Então tem-se informações adicionais que ambos terão tempos de execução bem próximos quando a entrada for muito grande.
+        Então tem-se informações adicionais que ambos tem tempos de execução bem próximos quando a entrada não for muito grande e se distanciam à medida que a entrada aumenta.
     </p>
 
     
