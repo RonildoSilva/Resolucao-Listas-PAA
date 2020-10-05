@@ -77,12 +77,83 @@ def prefixo_subsequencia(listaA, listaB):
 
     <ol type="a">
         <li>
+<pre>
+<code>
+# pre-condicoes: lista com elementos, chave de busca
+# pos-condiceos: indice do item encontrado ou -1, caso contrario
+def busca_binaria(lista, chave):
+
+    # indices da lista
+    inicio = 0
+    fim = len(lista) - 1
+    meio = 0
+    
+    while inicio <= fim: 
+        meio = (fim + inicio) // 2
+
+        if lista[meio] < chave: 
+            inicio = meio + 1
+        elif lista[meio] > chave: 
+            fim = meio - 1
+        else: 
+            return meio
+
+    return -1
+
+# pre-condicoes: A, lista com as cartas de ataque, ordenada de modo nao crescente
+#                D, lista com valor de defesa d, ordenada de modo nao decrescente
+#                W, lista com valor de peso w, (de acordo com a ordem de D)
+# pos-condicoes: pontos: pontuacao máxima
+def jogo_cartas(A, D, W):
+
+    pontos = 0
+    for i in range(len(A)):
+        a = A[i]
+        d = D[i]
+        w = W[i]
+
+        # se a é maior que o ultimo elemento de DW
+        # então se deve usar o menor elemento d para
+        # evitar o desperdicio de cartas maiores
+        if(a > D[len(D)-1]):
+            # atualizacao dos valores ja associados
+            A[i] = -1; D[i] = -1; W[i] = -1
+        # pergar o maior w onde d >= a
+        else:
+            indice = busca_binaria(D, A[i])
+            # encontra pela busca
+            if(indice == -1):
+                pontos = pontos + W[indice]
+                # atualizacao dos valores ja associados
+                A[i] = -1; D[i] = -1; W[i] = -1
+            # se nao encontra pela busca, apenas adicione
+            # os demais valores de w, pois faz parte da solucao
+            # otima
+            else:
+                pontos = pontos + W[i]
+                # atualizacao dos valores ja associados
+                A[i] = -1; D[i] = -1; W[i] = -1
+
+    return pontos    
+</code>
+</pre>
+        <p>
+            É um algoritmo de prioridade adaptativa. O algoritmo "escolhe" as melhores opções para se ganhar cada rodada.
+        </p>
         </li>
 
+        <!-- Forneça a complexidade de tempo. Assuma que é possível identificar em tempo Θ(logn) a carta de ataque não associada j que tem o maior a[j] e cuja força é no máximo um determinado valor. Este procedimento é discutido abaixo. -->
         <li>
+            <p>
+                Veja que existe um laco de tamanho \( n \) e algumas buscas binárias de complexidade logarítmica \( \log n \) . A complexidade do algoritmo é \( \Theta (n \log n) \)
+            </p>
         </li>
-
+                
+        <!-- Como qualquer associação de cartas de defesa a cartas de ataque é válida, então o invariante do loop afirma apenas que existe solução ótima consistente com as associações que já foram feitas. Mostre que o código do loop mantém este invariante. -->
         <li>
+            <p>
+                A cada iteraçãodo algoritmo , a ideia é sempre vencer ou perder utilizando a carta de defesa com o menor valor possível. A cada associação, essa relação se mantém, e garante a escolha ótima, capturando o valor da pontuação.
+            </p>
         </li>
     </ol>
     <!---------------------------------------------------------------------------------------------------------------------->
