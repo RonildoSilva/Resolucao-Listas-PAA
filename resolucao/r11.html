@@ -25,8 +25,9 @@
             <p>
                 A função executa uma chamada de si própria, uma para cada componente sub grafo do grafo inicial \( G \). A cada chamada, o tamnho da entrada é reduzido pelo tamanho do subgrafo de não-vizinhos u do vértice v inicial considerado. Denota-se \( |V| = n \) e \( |u| = m \) para exemplificar a escrita.
             </p>
-
-            \( T(n) = (n - m) \cdot T(n) + 3 \)
+            
+            <p>\( T(n) = T(n - m) + T(n) + 3 \)</p>
+            
             <ul>
                 <li>\( a = (n - m) \)</li>
                 <li>\( b =  1 \)</li>
@@ -36,7 +37,7 @@
             </ul>
 
             <p>
-                Como \(\log_b a > e \), então, \( T(n) \in \Theta n^{\log_b a} = \Theta n^{n-m}\)
+                Como \(\log_b a > e \), então, \( T(n) \in \Theta 2^{\log_b a} = \Theta 2^{n-m}\)
             </p>
 
         </li>
@@ -78,7 +79,8 @@ print(conjunto_otimo, solucao_otima)
         <!-- Argumente que o algoritmo do item anterior tem complexidade de tempo de pior caso exponencial. -->
         <li>
             <p>Recaptulando dos itens anterioriores:</p>
-            <p>\( T(n) = (n - m) \cdot T(n) + 3 \)</p>
+            <p>\( T(n) = T(n - m) + T(n) + 3 \)</p>
+            
             <ul>
                 <li>\( a = (n - m) \)</li>
                 <li>\( b =  1 \)</li>
@@ -88,7 +90,7 @@ print(conjunto_otimo, solucao_otima)
             </ul>
 
             <p>
-                Como \(\log_b a > e \), então, \( T(n) \in \Theta n^{\log_b a} = \Theta n^{n-m}\)
+                Como \(\log_b a > e \), então, \( T(n) \in \Theta 2^{\log_b a} = \Theta 2^{n-m}\)
             </p>
 
         </li>
@@ -129,17 +131,18 @@ print(conjunto_otimo, solucao_otima)
                 Denota-se \( |V| = n \) para exemplificar a escrita. A função executa uma chamada de si própria, uma para cada componente de tamanho 3. O tamanho n da função é dado pelo tamanho do conjunto de vértices. A cada chamada, o tamnho da entrada é reduzido pelo tamanho do subgrafo k3 encontrado. 
                 Um  grafo k3 é um  grafo completo de 3 vértices. Um laço para verificar a vizinhança de cada vértice possível de coloração de complexidade \( \Theta(n) \)
 
-                \( T(n) = (n - 3) \cdot T(n - 3) + n \)
+                <p>\( T(n) = T(\frac{n}{3}) + T(\frac{n}{3}) + T(\frac{n}{3}) + n \)</p>
+
                 <ul>
-                    <li>\( a = (n - 3) \)</li>
-                    <li>\( b =  1 \)</li>
+                    <li>\( a = 3 \)</li>
+                    <li>\( b =  27 \)</li>
                     <li>\( f(n) = n \)</li>
                     <li>\( d = 1 \)</li>
                     <li>\( e = 1 \)</li>
                 </ul>
 
                 <p>
-                    Como \(\log_b a > e \), então, \( T(n) \in \Theta n^{\log_b a} = \Theta n^{n-3}\)
+                    Como \(\log_b a > e \), então, \( T(n) \in \Theta n^{\log_b a} = \Theta 3^{n}\)
                 </p>
 
             </p>
@@ -202,16 +205,18 @@ def clique_3(V, tamanho, k=3):
             <p>
                 Como já foi definido anteriormente na análise de complexidade, pode-se recaptular da seguinte forma:                
             </p>
-            <p>\( T(n) = (n - 3) \cdot T(n - 3) + n \)</p>
+            <p>\( T(n) = T( \frac{n}{3} ) \cdot T( \frac{n}{3} ) \cdot T( \frac{n}{3} ) + n \)</p>
+                
             <ul>
-                <li>\( a = (n - 3) \)</li>
-                <li>\( b =  1 \)</li>
+                <li>\( a = 3 \)</li>
+                <li>\( b =  27 \)</li>
                 <li>\( f(n) = n \)</li>
                 <li>\( d = 1 \)</li>
                 <li>\( e = 1 \)</li>
             </ul>
+
             <p>
-                Como \(\log_b a > e \), então, \( T(n) \in \Theta n^{\log_b a} = \Theta n^{n-3}\)
+                Como \(\log_b a > e \), então, \( T(n) \in \Theta n^{\log_b a} = \Theta 3^{n}\)
             </p>
 
 
@@ -245,7 +250,7 @@ def clique_3(V, tamanho, k=3):
                 <!-- Remoção de simetrias -->
                 <li>
                     <p>
-                        Esse método requer uma solução que é menos clara. Não é tão nítida a simetria das soluções. Uma abordagem é considerar que o grafo é uma matriz quadrada de ordem |V|. Como existe a propriedade simétrica de relações entre vértices (que podem também serem representadas por uma matriz), o espaço de busca pode ser reduzido em \( \fract{|V|^{2} - |V|}{2} \), justamente a quantidade de elementos da matriz triangular.
+                        Esse método requer uma solução que é menos clara. Não é tão nítida a simetria das soluções. Uma abordagem é considerar que o grafo é uma matriz quadrada de ordem |V|. Como existe a propriedade simétrica de relações entre vértices (que podem também serem representadas por uma matriz), o espaço de busca pode ser reduzido em \( \frac{|V|^{2} - |V|}{2} \), justamente a quantidade de elementos da matriz triangular.
                     </p>
                 </li>
 
